@@ -3,11 +3,12 @@ import Base from '../layouts/Base.astro';
 import learning from '../data/learning.json';
 import workshops from '../data/workshops.json';
 
-const { tryhackme: thm, hackthebox: htb } = learning;
+const { tryhackme: thm, hackthebox: htb, certifications } = learning;
 
 const statusColor = (status) => {
-  if (status === 'Complete') return 'border-color:#3a4a3a;color:#9adf9a;';
+  if (status === 'Complete' || status === 'Earned') return 'border-color:#3a4a3a;color:#9adf9a;';
   if (status === 'In Progress') return 'border-color:#3a3a20;color:#dfcf7a;';
+  if (status === 'Planned') return 'border-color:#2a2e38;color:#9aa0ad;';
   return '';
 };
 
@@ -20,6 +21,53 @@ const formatDate = (dateStr) => {
 <Base title="Learning">
   <h1>Learning &amp; Certifications</h1>
   <p>Tracking my progress through cybersecurity platforms and workshops as I build skills in the field.</p>
+
+  <!-- ───── Professional Certifications ───── -->
+  <h2>Professional Certifications</h2>
+  {certifications.length === 0 ? (
+    <p class="empty-state">No certifications added yet — edit <code>src/data/learning.json</code>.</p>
+  ) : (
+    <div class="grid" style="grid-template-columns:repeat(auto-fill,minmax(280px,1fr));">
+      {certifications.map((cert) => (
+        <div class="card" style="position:relative;">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:0.5rem;">
+            <div>
+              <h3 style="margin:0 0 0.2rem;">{cert.name}</h3>
+              <p style="color:var(--text-dim);margin:0 0 0.6rem;font-size:0.9rem;">{cert.issuer}</p>
+            </div>
+            {cert.badge && (
+              <img src={cert.badge} alt={`${cert.name} badge`} style="width:48px;height:48px;object-fit:contain;" />
+            )}
+          </div>
+
+          <span class="tag" style={statusColor(cert.status)}>{cert.status}</span>
+
+          {cert.date && (
+            <p style="margin:0.6rem 0 0;font-size:0.85rem;color:var(--text-dim);">
+              Earned: <strong style="color:var(--text);">{formatDate(cert.date)}</strong>
+              {cert.expires && (
+                <> · Expires: <strong style="color:var(--text);">{formatDate(cert.expires)}</strong></>
+              )}
+            </p>
+          )}
+
+          {cert.credentialId && (
+            <p style="margin:0.3rem 0 0;font-size:0.8rem;color:var(--text-dim);">
+              ID: <code>{cert.credentialId}</code>
+            </p>
+          )}
+
+          {cert.verifyUrl && cert.credentialId && (
+            <p style="margin:0.5rem 0 0;">
+              <a href={cert.verifyUrl} target="_blank" rel="noopener" style="font-size:0.85rem;">
+                Verify credential →
+              </a>
+            </p>
+          )}
+        </div>
+      ))}
+    </div>
+  )}
 
   <!-- ───── TryHackMe ───── -->
   <h2>TryHackMe</h2>
