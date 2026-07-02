@@ -1,9 +1,9 @@
 [
   {
-    "title": "Example Security Workshop",
-    "organizer": "BSides Iowa",
-    "date": "2024-10-12",
-    "topics": ["Threat Modeling", "CTF Basics"],
+    "title": "BSides Des Moines",
+    "organizer": "BSidesDSM",
+    "date": "2026-06-13",
+    "topics": ["Threat Modeling", "AI in Security", "Incident Response", "CTF Basics"],
     "notes": "Great intro to local security community. Competed in the beginner CTF track.",
     "certificate": ""
   }
