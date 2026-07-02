@@ -1,27 +1,55 @@
 {
   "name": "Your Name",
-  "title": "Systems / DevOps Engineer",
   "location": "Iowa, USA",
   "email": "you@example.com",
   "links": [
     { "label": "GitHub", "url": "https://github.com/your-github-username" },
     { "label": "LinkedIn", "url": "https://linkedin.com/in/your-profile" }
   ],
-  "summary": "Brief 2-3 sentence professional summary goes here.",
-  "experience": [
-    {
-      "company": "Company Name",
-      "role": "Job Title",
-      "start": "2022",
-      "end": "Present",
-      "bullets": [
-        "Accomplishment or responsibility one.",
-        "Accomplishment or responsibility two."
-      ]
-    }
-  ],
-  "skills": ["Linux", "Docker", "Networking", "Python", "Proxmox"],
+  "summary": "Brief 2-3 sentence overview covering both your IT and pharmacy background goes here.",
   "education": [
     { "school": "School Name", "credential": "Degree / Certification", "year": "Year" }
+  ],
+  "tracks": [
+    {
+      "id": "it",
+      "label": "Information Technology",
+      "icon": "💻",
+      "title": "Systems / DevOps Engineer",
+      "summary": "IT-specific summary for technical hiring managers — homelab, infrastructure, tooling, etc.",
+      "skills": ["Linux", "Docker", "Networking", "Python", "Proxmox", "Ansible"],
+      "experience": [
+        {
+          "company": "Company Name",
+          "role": "IT Job Title",
+          "start": "2022",
+          "end": "Present",
+          "bullets": [
+            "IT accomplishment or responsibility one.",
+            "IT accomplishment or responsibility two."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pharmacy",
+      "label": "Pharmacy",
+      "icon": "⚕️",
+      "title": "Pharmacist / Pharmacy Technician",
+      "summary": "Pharmacy-specific summary for healthcare hiring managers — clinical experience, settings, specialties.",
+      "skills": ["Clinical Review", "Patient Counseling", "Drug Utilization Review", "Pharmacy Law"],
+      "experience": [
+        {
+          "company": "Pharmacy Name",
+          "role": "Pharmacy Role",
+          "start": "2018",
+          "end": "Present",
+          "bullets": [
+            "Pharmacy accomplishment or responsibility one.",
+            "Pharmacy accomplishment or responsibility two."
+          ]
+        }
+      ]
+    }
   ]
 }
