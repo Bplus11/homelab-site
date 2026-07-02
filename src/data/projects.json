@@ -1,0 +1,20 @@
+[
+  {
+    "slug": "homelab-cluster",
+    "title": "Proxmox Homelab Cluster",
+    "summary": "3-node Proxmox cluster running Ceph storage, Docker workloads, and a pile of self-hosted services.",
+    "tags": ["Proxmox", "Ceph", "Docker", "Networking"],
+    "github": "your-github-username/homelab-cluster",
+    "status": "Active",
+    "details": "Notes, diagrams, and write-ups about this project go here. You can write in plain HTML/Markdown-ish text in this field, or convert these to .md files later if you want richer formatting."
+  },
+  {
+    "slug": "this-website",
+    "title": "This Website",
+    "summary": "The Astro site you're looking at right now.",
+    "tags": ["Astro", "Static Site", "Self-hosted"],
+    "github": "your-github-username/homelab-site",
+    "status": "Active",
+    "details": "Built with Astro, deployed to a free static host, data stored as JSON files in the repo."
+  }
+]

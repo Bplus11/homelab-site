@@ -1,0 +1,42 @@
+---
+import '../styles/global.css';
+
+const { title = 'My Homelab' } = Astro.props;
+const path = Astro.url.pathname;
+
+const isActive = (href) => {
+  if (href === '/') return path === '/';
+  return path.startsWith(href);
+};
+---
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container">
+        <nav>
+          <span class="brand">Your Name</span>
+          <a href="/" class={isActive('/') ? 'active' : ''}>Home</a>
+          <a href="/projects" class={isActive('/projects') ? 'active' : ''}>Projects</a>
+          <a href="/resume" class={isActive('/resume') ? 'active' : ''}>Resume</a>
+          <a href="/mtg" class={isActive('/mtg') ? 'active' : ''}>MTG Collection</a>
+          <a href="/boardgames" class={isActive('/boardgames') ? 'active' : ''}>Board Games</a>
+          <a href="/dnd" class={isActive('/dnd') ? 'active' : ''}>D&D</a>
+        </nav>
+      </div>
+    </header>
+    <main class="container">
+      <slot />
+    </main>
+    <footer class="site-footer">
+      <div class="container">
+        Built with Astro · Last updated {new Date().toLocaleDateString()}
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,27 @@
+{
+  "name": "Your Name",
+  "title": "Systems / DevOps Engineer",
+  "location": "Iowa, USA",
+  "email": "you@example.com",
+  "links": [
+    { "label": "GitHub", "url": "https://github.com/your-github-username" },
+    { "label": "LinkedIn", "url": "https://linkedin.com/in/your-profile" }
+  ],
+  "summary": "Brief 2-3 sentence professional summary goes here.",
+  "experience": [
+    {
+      "company": "Company Name",
+      "role": "Job Title",
+      "start": "2022",
+      "end": "Present",
+      "bullets": [
+        "Accomplishment or responsibility one.",
+        "Accomplishment or responsibility two."
+      ]
+    }
+  ],
+  "skills": ["Linux", "Docker", "Networking", "Python", "Proxmox"],
+  "education": [
+    { "school": "School Name", "credential": "Degree / Certification", "year": "Year" }
+  ]
+}

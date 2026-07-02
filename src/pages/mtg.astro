@@ -1,0 +1,65 @@
+---
+import Base from '../layouts/Base.astro';
+import cards from '../data/mtg-collection.json';
+
+const totalCards = cards.reduce((sum, c) => sum + c.quantity, 0);
+const uniqueCards = cards.length;
+---
+<Base title="MTG Collection">
+  <h1>Magic: The Gathering Collection</h1>
+  <p>
+    This list is generated from an Archidekt collection export. Archidekt doesn't expose a
+    public API you can fetch live from a static site, so the workflow is: export your collection
+    as CSV from Archidekt, then run <code>node scripts/import-archidekt-csv.mjs your-export.csv</code>
+    to regenerate this page's data. Re-run it any time your collection changes.
+  </p>
+
+  <div class="card">
+    <strong>{uniqueCards}</strong> unique cards · <strong>{totalCards}</strong> total cards
+  </div>
+
+  <div class="toolbar">
+    <input type="search" id="search" placeholder="Search by card name or set…" />
+  </div>
+
+  <table id="card-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Set</th>
+        <th>Qty</th>
+        <th>Foil</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      {cards.map((c) => (
+        <tr data-name={c.name.toLowerCase()} data-set={c.set.toLowerCase()}>
+          <td>{c.name}</td>
+          <td>{c.set}</td>
+          <td>{c.quantity}</td>
+          <td>{c.foil ? '✓' : ''}</td>
+          <td>{c.condition}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+  <p id="no-results" class="empty-state" style="display:none;">No cards match that search.</p>
+</Base>
+
+<script>
+  const input = document.getElementById('search');
+  const rows = Array.from(document.querySelectorAll('#card-table tbody tr'));
+  const noResults = document.getElementById('no-results');
+
+  input?.addEventListener('input', () => {
+    const q = input.value.trim().toLowerCase();
+    let visible = 0;
+    rows.forEach((row) => {
+      const matches = row.dataset.name.includes(q) || row.dataset.set.includes(q);
+      row.style.display = matches ? '' : 'none';
+      if (matches) visible++;
+    });
+    noResults.style.display = visible === 0 ? 'block' : 'none';
+  });
+</script>

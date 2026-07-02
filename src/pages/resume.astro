@@ -1,0 +1,43 @@
+---
+import Base from '../layouts/Base.astro';
+import resume from '../data/resume.json';
+---
+<Base title="Resume">
+  <h1>{resume.name}</h1>
+  <p style="color:var(--text-dim);">{resume.title} · {resume.location}</p>
+  <p>
+    {resume.email} ·
+    {resume.links.map((l, i) => (
+      <>
+        <a href={l.url} target="_blank" rel="noopener">{l.label}</a>{i < resume.links.length - 1 ? ' · ' : ''}
+      </>
+    ))}
+  </p>
+
+  <div class="card">
+    <p>{resume.summary}</p>
+  </div>
+
+  <h2>Experience</h2>
+  {resume.experience.map((job) => (
+    <div class="card">
+      <h3>{job.role} — {job.company}</h3>
+      <p style="color:var(--text-dim);margin-top:-0.5rem;">{job.start} – {job.end}</p>
+      <ul>
+        {job.bullets.map((b) => <li>{b}</li>)}
+      </ul>
+    </div>
+  ))}
+
+  <h2>Skills</h2>
+  <div>
+    {resume.skills.map((s) => <span class="tag">{s}</span>)}
+  </div>
+
+  <h2>Education</h2>
+  {resume.education.map((e) => (
+    <div class="card">
+      <strong>{e.credential}</strong> — {e.school} ({e.year})
+    </div>
+  ))}
+</Base>

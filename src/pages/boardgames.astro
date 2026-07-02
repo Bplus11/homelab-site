@@ -1,0 +1,49 @@
+---
+import Base from '../layouts/Base.astro';
+import games from '../data/boardgames.json';
+
+const renderStars = (rating) => {
+  const full = Math.round(rating);
+  return '★'.repeat(full) + '☆'.repeat(5 - full);
+};
+---
+<Base title="Board Games">
+  <h1>Board Game Collection</h1>
+  <p>
+    Edit <code>src/data/boardgames.json</code> to add games. Each entry: title, players, playtime, rating (0-5), tags, review.
+  </p>
+
+  <div class="toolbar">
+    <input type="search" id="search" placeholder="Search by title or tag…" />
+  </div>
+
+  <div class="grid" id="game-grid">
+    {games.map((g) => (
+      <div class="card game-card" data-title={g.title.toLowerCase()} data-tags={g.tags.join(',').toLowerCase()}>
+        <h3>{g.title}</h3>
+        <p class="stars">{renderStars(g.rating)} <span style="color:var(--text-dim);">({g.rating}/5)</span></p>
+        <p style="color:var(--text-dim);">{g.players} players · {g.playtime}</p>
+        <div>{g.tags.map((t) => <span class="tag">{t}</span>)}</div>
+        <p style="margin-top:0.75rem;">{g.review}</p>
+      </div>
+    ))}
+  </div>
+  <p id="no-results" class="empty-state" style="display:none;">No games match that search.</p>
+</Base>
+
+<script>
+  const input = document.getElementById('search');
+  const cards = Array.from(document.querySelectorAll('.game-card'));
+  const noResults = document.getElementById('no-results');
+
+  input?.addEventListener('input', () => {
+    const q = input.value.trim().toLowerCase();
+    let visibleCount = 0;
+    cards.forEach((card) => {
+      const matches = card.dataset.title.includes(q) || card.dataset.tags.includes(q);
+      card.style.display = matches ? '' : 'none';
+      if (matches) visibleCount++;
+    });
+    noResults.style.display = visibleCount === 0 ? 'block' : 'none';
+  });
+</script>
