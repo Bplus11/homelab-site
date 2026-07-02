@@ -1,4 +1,54 @@
 {
+    "certifications": [
+    { "name": "Associate - Information Storage and Management Version 5.0",
+      "issuer": "Dell Technologies",
+      "status": "Earned",
+      "date": "2022-09",
+      "expires": "",
+      "credentialId": "99647f83-7238-4b1b-9c99-cb32034744d7",
+      "verifyUrl": "",
+      "badge": "https://www.credly.com/earner/earned/badge/99647f83-7238-4b1b-9c99-cb32034744d7"
+    },
+    { "name": "Security Foundations 2023",
+      "issuer": "Dell Technologies",
+      "status": "earned",
+      "date": "2024-01",
+      "expires": "",
+      "credentialId": "277efca4-663d-4e42-af37-1064be3b3f0f",
+      "verifyUrl": "",
+      "badge": "https://www.credly.com/earner/earned/badge/277efca4-663d-4e42-af37-1064be3b3f0f"
+    },
+    {
+      "name": "CompTIA A+",
+      "issuer": "CompTIA",
+      "status": "Earned",
+      "date": "2017-06",
+      "expires": "2029-06",
+      "credentialId": "C5PB38DNLCQ413S6",
+      "verifyUrl": "https://www.certmetrics.com/comptia/public/verification.aspx",
+      "badge": "https://www.credly.com/earner/earned/badge/7a91658d-203f-4665-8c39-93df0c6b9908"
+    },
+    {
+      "name": "CompTIA Network+",
+      "issuer": "CompTIA",
+      "status": "In Progress",
+      "date": "",
+      "expires": "",
+      "credentialId": "",
+      "verifyUrl": "",
+      "badge": ""
+    },
+    {
+      "name": "Cisco CCNA",
+      "issuer": "Cisco",
+      "status": "Planned",
+      "date": "",
+      "expires": "",
+      "credentialId": "",
+      "verifyUrl": "",
+      "badge": ""
+    }
+  ],
   "tryhackme": {
     "username": "matthew.breckenridge",
     "profileUrl": "https://tryhackme.com/p/matthew.breckenridge",
