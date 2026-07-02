@@ -25,24 +25,10 @@ const formatDate = (dateStr) => {
   <h2>TryHackMe</h2>
   <div class="card" style="display:flex;gap:2rem;flex-wrap:wrap;align-items:flex-start;">
     <div style="flex:1;min-width:220px;">
-      <!-- Official THM live badge iframe -->
-      <!-- To get your userPublicId: on your THM profile, click "Edit Profile" → 
-           scroll to "Show off your learning" → copy the number from the iframe src URL -->
-      {thm.userPublicId && thm.userPublicId !== 'YOUR_THM_PUBLIC_ID' ? (
-        <iframe
-          src={`https://tryhackme.com/api/v2/badges/public-profile?userPublicId=${thm.userPublicId}`}
-          style="border:none;width:100%;min-height:200px;"
-          title="TryHackMe Badge"
-        />
-      ) : (
-        <div class="empty-state" style="padding:1rem 0;">
-          <p>
-            Add your <code>userPublicId</code> to <code>src/data/learning.json</code> to show your live THM badge here.<br /><br />
-            Find it on your THM profile → Edit Profile → "Show off your learning" → copy the number from the iframe URL.
-          </p>
-          <a href="https://tryhackme.com" target="_blank" rel="noopener">TryHackMe →</a>
-        </div>
-      )}
+      <!-- Live THM stats card, fetched client-side from the username API -->
+      <div id="thm-badge" class="card" style="background:#1a1f2e;border-color:#2a3a5a;min-height:120px;">
+        <p class="empty-state">Loading TryHackMe stats…</p>
+      </div>
     </div>
 
     <div style="flex:2;min-width:260px;">
@@ -146,3 +132,56 @@ const formatDate = (dateStr) => {
     </div>
   )}
 </Base>
+
+<script define:vars={{ thmUsername: thm.username, thmProfileUrl: thm.profileUrl }}>
+  const badge = document.getElementById('thm-badge');
+  if (badge && thmUsername) {
+    fetch(`https://tryhackme.com/api/v2/users/badges?username=${thmUsername}`)
+      .then((r) => {
+        if (!r.ok) throw new Error(`Status ${r.status}`);
+        return r.json();
+      })
+      .then((data) => {
+        // The API returns { success, data: { badges: [...], userRank, points, ... } }
+        const d = data?.data ?? data;
+        const badges = d?.badges ?? [];
+        const rank = d?.userRank ?? d?.rank ?? '';
+        const points = d?.points ?? '';
+        const rooms = d?.completedRooms ?? d?.completedRoomCount ?? '';
+        const streak = d?.streak ?? '';
+        const avatar = d?.avatar ?? d?.avatarUrl ?? '';
+
+        badge.innerHTML = `
+          <div style="display:flex;gap:1rem;align-items:center;flex-wrap:wrap;">
+            ${avatar ? `<img src="${avatar}" alt="THM avatar" style="width:56px;height:56px;border-radius:50%;border:2px solid #2a3a5a;">` : ''}
+            <div>
+              <strong style="font-size:1.1rem;">${thmUsername}</strong><br>
+              ${rank ? `<span style="color:var(--text-dim);">Rank: <strong style="color:var(--text);">${rank}</strong></span><br>` : ''}
+              ${points !== '' ? `<span style="color:var(--text-dim);">Points: <strong style="color:#5eb1ff;">${Number(points).toLocaleString()}</strong></span>` : ''}
+              ${rooms !== '' ? ` · <span style="color:var(--text-dim);">Rooms: <strong style="color:var(--text);">${rooms}</strong></span>` : ''}
+              ${streak !== '' ? ` · <span style="color:var(--text-dim);">Streak: <strong style="color:#f5a623;">${streak}🔥</strong></span>` : ''}
+            </div>
+          </div>
+          ${badges.length > 0 ? `
+            <div style="margin-top:1rem;">
+              ${badges.slice(0, 8).map(b =>
+                `<img src="${b.imageUrl ?? b.image ?? b.icon ?? ''}" title="${b.name ?? ''}" alt="${b.name ?? ''}"
+                  style="width:40px;height:40px;margin:0.2rem;border-radius:6px;"
+                  onerror="this.style.display='none'">`
+              ).join('')}
+            </div>` : ''}
+          <p style="margin-top:0.75rem;margin-bottom:0;">
+            <a href="${thmProfileUrl}" target="_blank" rel="noopener" style="font-size:0.85rem;">
+              View full profile on TryHackMe →
+            </a>
+          </p>
+        `;
+      })
+      .catch((err) => {
+        badge.innerHTML = `
+          <p>Couldn't load THM stats (${err.message}). TryHackMe's API may have CORS restrictions in some browsers.</p>
+          <p><a href="${thmProfileUrl}" target="_blank" rel="noopener">View profile directly on TryHackMe →</a></p>
+        `;
+      });
+  }
+</script>
