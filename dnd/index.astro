@@ -1,0 +1,18 @@
+---
+import Base from '../../layouts/Base.astro';
+import campaigns from '../../data/dnd-campaigns.json';
+---
+<Base title="D&D Campaigns">
+  <h1>D&amp;D Campaigns</h1>
+  <p>Edit <code>src/data/dnd-campaigns.json</code> to add or update campaigns, characters, quests, and notes.</p>
+
+  <div class="grid">
+    {campaigns.map((c) => (
+      <div class="card">
+        <h3><a href={`/dnd/${c.slug}`}>{c.name}</a></h3>
+        <p style="color:var(--text-dim);">{c.role} · {c.status}</p>
+        <p>{c.characters.length} character(s) · {c.quests.length} quest(s) logged</p>
+      </div>
+    ))}
+  </div>
+</Base>

@@ -1,0 +1,49 @@
+---
+import Base from '../../layouts/Base.astro';
+import campaigns from '../../data/dnd-campaigns.json';
+
+export function getStaticPaths() {
+  return campaigns.map((c) => ({ params: { slug: c.slug }, props: { campaign: c } }));
+}
+
+const { campaign } = Astro.props;
+---
+<Base title={`${campaign.name} — D&D`}>
+  <p><a href="/dnd">← Back to Campaigns</a></p>
+  <h1>{campaign.name}</h1>
+  <p style="color:var(--text-dim);">{campaign.role} · {campaign.status}</p>
+
+  <h2>Characters</h2>
+  <table>
+    <thead>
+      <tr><th>Name</th><th>Player</th><th>Class</th><th>Level</th></tr>
+    </thead>
+    <tbody>
+      {campaign.characters.map((ch) => (
+        <tr>
+          <td>{ch.name}</td>
+          <td>{ch.player}</td>
+          <td>{ch.class}</td>
+          <td>{ch.level}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+
+  <h2>Quests</h2>
+  <ul>
+    {campaign.quests.map((q) => (
+      <li>
+        {q.title} —
+        <span class="tag" style={q.status === 'Complete' ? 'border-color:#3a4a3a;color:#9adf9a;' : ''}>
+          {q.status}
+        </span>
+      </li>
+    ))}
+  </ul>
+
+  <h2>Notes</h2>
+  <div class="card">
+    <p>{campaign.notes}</p>
+  </div>
+</Base>

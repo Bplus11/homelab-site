@@ -1,0 +1,10 @@
+[
+  {
+    "title": "Example Security Workshop",
+    "organizer": "BSides Iowa",
+    "date": "2024-10-12",
+    "topics": ["Threat Modeling", "CTF Basics"],
+    "notes": "Great intro to local security community. Competed in the beginner CTF track.",
+    "certificate": ""
+  }
+]

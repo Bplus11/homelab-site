@@ -1,0 +1,148 @@
+---
+import Base from '../layouts/Base.astro';
+import learning from '../data/learning.json';
+import workshops from '../data/workshops.json';
+
+const { tryhackme: thm, hackthebox: htb } = learning;
+
+const statusColor = (status) => {
+  if (status === 'Complete') return 'border-color:#3a4a3a;color:#9adf9a;';
+  if (status === 'In Progress') return 'border-color:#3a3a20;color:#dfcf7a;';
+  return '';
+};
+
+const formatDate = (dateStr) => {
+  if (!dateStr) return '';
+  const d = new Date(dateStr + (dateStr.length === 7 ? '-01' : ''));
+  return d.toLocaleDateString('en-US', { year: 'numeric', month: 'short' });
+};
+---
+<Base title="Learning">
+  <h1>Learning &amp; Certifications</h1>
+  <p>Tracking my progress through cybersecurity platforms and workshops as I build skills in the field.</p>
+
+  <!-- ───── TryHackMe ───── -->
+  <h2>TryHackMe</h2>
+  <div class="card" style="display:flex;gap:2rem;flex-wrap:wrap;align-items:flex-start;">
+    <div style="flex:1;min-width:220px;">
+      <!-- Official THM live badge iframe -->
+      <!-- To get your userPublicId: on your THM profile, click "Edit Profile" → 
+           scroll to "Show off your learning" → copy the number from the iframe src URL -->
+      {thm.userPublicId && thm.userPublicId !== 'YOUR_THM_PUBLIC_ID' ? (
+        <iframe
+          src={`https://tryhackme.com/api/v2/badges/public-profile?userPublicId=${thm.userPublicId}`}
+          style="border:none;width:100%;min-height:200px;"
+          title="TryHackMe Badge"
+        />
+      ) : (
+        <div class="empty-state" style="padding:1rem 0;">
+          <p>
+            Add your <code>userPublicId</code> to <code>src/data/learning.json</code> to show your live THM badge here.<br /><br />
+            Find it on your THM profile → Edit Profile → "Show off your learning" → copy the number from the iframe URL.
+          </p>
+          <a href="https://tryhackme.com" target="_blank" rel="noopener">TryHackMe →</a>
+        </div>
+      )}
+    </div>
+
+    <div style="flex:2;min-width:260px;">
+      <h3 style="margin-top:0;">Learning Paths</h3>
+      {thm.paths.length === 0 ? (
+        <p class="empty-state">No paths added yet — edit <code>src/data/learning.json</code>.</p>
+      ) : (
+        <table>
+          <thead>
+            <tr><th>Path</th><th>Status</th><th>Completed</th></tr>
+          </thead>
+          <tbody>
+            {thm.paths.map((p) => (
+              <tr>
+                <td>{p.name}</td>
+                <td><span class="tag" style={statusColor(p.status)}>{p.status}</span></td>
+                <td style="color:var(--text-dim);">{formatDate(p.completedDate)}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
+
+      {thm.highlightRooms.length > 0 && (
+        <>
+          <h3>Notable Rooms</h3>
+          <div>
+            {thm.highlightRooms.map((r) => (
+              <span class="tag" style={statusColor(r.status)}>
+                <a href={r.url} target="_blank" rel="noopener" style="color:inherit;">{r.name}</a>
+              </span>
+            ))}
+          </div>
+        </>
+      )}
+
+      <p style="margin-top:1rem;">
+        <a href={thm.profileUrl} target="_blank" rel="noopener">View full THM profile →</a>
+      </p>
+    </div>
+  </div>
+
+  <!-- ───── HackTheBox ───── -->
+  <h2>HackTheBox</h2>
+  <div class="card">
+    {htb.username ? (
+      <div>
+        <p>
+          <strong>{htb.username}</strong>
+          {htb.rank && <> · Rank: <span class="tag">{htb.rank}</span></>}
+          {htb.profileUrl && <> · <a href={htb.profileUrl} target="_blank" rel="noopener">View Profile →</a></>}
+        </p>
+        {htb.machines.length > 0 && (
+          <table>
+            <thead><tr><th>Machine</th><th>OS</th><th>Difficulty</th><th>Status</th></tr></thead>
+            <tbody>
+              {htb.machines.map((m) => (
+                <tr>
+                  <td>{m.name}</td>
+                  <td>{m.os}</td>
+                  <td>{m.difficulty}</td>
+                  <td><span class="tag" style={statusColor(m.status)}>{m.status}</span></td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
+      </div>
+    ) : (
+      <p class="empty-state">
+        HackTheBox coming soon — fill in your username and progress in <code>src/data/learning.json</code> when you're ready to start.
+      </p>
+    )}
+  </div>
+
+  <!-- ───── Workshops & Bootcamps ───── -->
+  <h2>Workshops &amp; Bootcamps</h2>
+  {workshops.length === 0 ? (
+    <p class="empty-state">No workshops added yet — edit <code>src/data/workshops.json</code>.</p>
+  ) : (
+    <div>
+      {workshops.map((w) => (
+        <div class="card">
+          <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:0.5rem;align-items:flex-start;">
+            <div>
+              <h3 style="margin:0;">{w.title}</h3>
+              <p style="color:var(--text-dim);margin:0.2rem 0 0.5rem;">
+                {w.organizer} · {formatDate(w.date)}
+              </p>
+            </div>
+            {w.certificate && (
+              <a href={w.certificate} target="_blank" rel="noopener" style="font-size:0.85rem;">
+                Certificate →
+              </a>
+            )}
+          </div>
+          <div>{w.topics.map((t) => <span class="tag">{t}</span>)}</div>
+          {w.notes && <p style="margin-top:0.75rem;">{w.notes}</p>}
+        </div>
+      ))}
+    </div>
+  )}
+</Base>

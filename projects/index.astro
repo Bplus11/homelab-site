@@ -1,0 +1,23 @@
+---
+import Base from '../../layouts/Base.astro';
+import projects from '../../data/projects.json';
+---
+<Base title="Projects">
+  <h1>Projects</h1>
+  <p>Homelab builds and code projects. Click into a project for details and its live GitHub repo info.</p>
+
+  <div class="grid">
+    {projects.map((p) => (
+      <div class="card">
+        <h3><a href={`/projects/${p.slug}`}>{p.title}</a></h3>
+        <p>{p.summary}</p>
+        <div>
+          {p.tags.map((t) => <span class="tag">{t}</span>)}
+        </div>
+        <p style="margin-top:0.75rem;">
+          <span class="tag" style="border-color:#3a4a3a;color:#9adf9a;">{p.status}</span>
+        </p>
+      </div>
+    ))}
+  </div>
+</Base>

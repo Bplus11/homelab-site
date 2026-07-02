@@ -1,0 +1,36 @@
+{
+  "tryhackme": {
+    "username": "YourTHMUsername",
+    "userPublicId": "YOUR_THM_PUBLIC_ID",
+    "profileUrl": "https://tryhackme.com/p/YourTHMUsername",
+    "paths": [
+      {
+        "name": "Pre-Security",
+        "status": "Complete",
+        "completedDate": "2024-09"
+      },
+      {
+        "name": "Introduction to Cybersecurity",
+        "status": "In Progress",
+        "completedDate": ""
+      }
+    ],
+    "highlightRooms": [
+      { "name": "Linux Fundamentals Part 1", "url": "https://tryhackme.com/room/linuxfundamentalspart1", "status": "Complete" },
+      { "name": "Nmap", "url": "https://tryhackme.com/room/furthernmap", "status": "Complete" }
+    ]
+  },
+  "hackthebox": {
+    "username": "",
+    "profileUrl": "",
+    "rank": "",
+    "machines": [
+      {
+        "name": "Example Machine",
+        "os": "Linux",
+        "difficulty": "Easy",
+        "status": "Complete"
+      }
+    ]
+  }
+}
