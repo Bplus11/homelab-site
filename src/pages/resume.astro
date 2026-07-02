@@ -3,41 +3,96 @@ import Base from '../layouts/Base.astro';
 import resume from '../data/resume.json';
 ---
 <Base title="Resume">
+  <!-- Header -->
   <h1>{resume.name}</h1>
-  <p style="color:var(--text-dim);">{resume.title} · {resume.location}</p>
+  <p style="color:var(--text-dim);">{resume.location}</p>
   <p>
-    {resume.email} ·
-    {resume.links.map((l, i) => (
-      <>
-        <a href={l.url} target="_blank" rel="noopener">{l.label}</a>{i < resume.links.length - 1 ? ' · ' : ''}
-      </>
+    {resume.email}
+    {resume.links.map((l) => (
+      <> · <a href={l.url} target="_blank" rel="noopener">{l.label}</a></>
     ))}
   </p>
 
-  <div class="card">
-    <p>{resume.summary}</p>
+  {resume.summary && (
+    <div class="card">
+      <p style="margin:0;">{resume.summary}</p>
+    </div>
+  )}
+
+  <!-- Track switcher tabs -->
+  <div style="display:flex;gap:0.75rem;margin:2rem 0 1.25rem;flex-wrap:wrap;">
+    {resume.tracks.map((track, i) => (
+      <button
+        class="track-tab"
+        data-track={track.id}
+        style={i === 0
+          ? 'background:var(--accent);color:#06121f;'
+          : 'background:transparent;border:1px solid var(--border);color:var(--text);'}
+      >
+        {track.icon} {track.label}
+      </button>
+    ))}
   </div>
 
-  <h2>Experience</h2>
-  {resume.experience.map((job) => (
-    <div class="card">
-      <h3>{job.role} — {job.company}</h3>
-      <p style="color:var(--text-dim);margin-top:-0.5rem;">{job.start} – {job.end}</p>
-      <ul>
-        {job.bullets.map((b) => <li>{b}</li>)}
-      </ul>
+  <!-- Track panels -->
+  {resume.tracks.map((track, i) => (
+    <div class="track-panel" id={`track-${track.id}`} style={i !== 0 ? 'display:none;' : ''}>
+
+      <div class="card" style="margin-bottom:1.5rem;">
+        <h2 style="margin-top:0;">{track.title}</h2>
+        {track.summary && <p style="margin:0;">{track.summary}</p>}
+      </div>
+
+      <h3>Skills</h3>
+      <div style="margin-bottom:1.5rem;">
+        {track.skills.map((s) => <span class="tag">{s}</span>)}
+      </div>
+
+      <h3>Experience</h3>
+      {track.experience.map((job) => (
+        <div class="card">
+          <h3 style="margin-top:0;">{job.role} — {job.company}</h3>
+          <p style="color:var(--text-dim);margin-top:-0.5rem;">{job.start} – {job.end}</p>
+          <ul style="margin-bottom:0;">
+            {job.bullets.map((b) => <li>{b}</li>)}
+          </ul>
+        </div>
+      ))}
+
     </div>
   ))}
 
-  <h2>Skills</h2>
-  <div>
-    {resume.skills.map((s) => <span class="tag">{s}</span>)}
-  </div>
-
-  <h2>Education</h2>
+  <!-- Education (shared across both tracks) -->
+  <h2 style="margin-top:2rem;">Education</h2>
   {resume.education.map((e) => (
     <div class="card">
       <strong>{e.credential}</strong> — {e.school} ({e.year})
     </div>
   ))}
 </Base>
+
+<script>
+  const tabs = Array.from(document.querySelectorAll('.track-tab'));
+  const panels = Array.from(document.querySelectorAll('.track-panel'));
+
+  tabs.forEach((tab) => {
+    tab.addEventListener('click', () => {
+      const target = tab.dataset.track;
+
+      // Update tab styles
+      tabs.forEach((t) => {
+        t.style.background = 'transparent';
+        t.style.border = '1px solid var(--border)';
+        t.style.color = 'var(--text)';
+      });
+      tab.style.background = 'var(--accent)';
+      tab.style.border = 'none';
+      tab.style.color = '#06121f';
+
+      // Show/hide panels
+      panels.forEach((p) => {
+        p.style.display = p.id === `track-${target}` ? '' : 'none';
+      });
+    });
+  });
+</script>
