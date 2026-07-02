@@ -9,8 +9,8 @@
   "summary": "IT and pharmacy operations professional with a unique blend of infrastructure management, hands-on technical troubleshooting, and clinical procurement/compliance expertise. Proven leadership in IT projects, team coordination, and customer-facing technical support, paired with deep experience managing complex pharmaceutical inventory systems and federal regulatory compliance (340B, DSCSA, DEA). Combines analytical, compliance-driven problem solving with strong vendor relationship management and a track record of mentoring and training staff.",
   "education": [
     { "school": "Kaplan University", "credential": "Associate of Applied Science in IT", "GPA": "4.0", "year": "2015"},
-    { "school": "Purdue University Global", "credential": "Bachelor of Applied Science in IT (Concentration: Information Security & Assurance)", "GPA": "4.0", "year": "2017" }
-  ],
+    { "school": "Purdue University Global", "credential": "Bachelor of Applied Science in IT (Concentration: Information Security & Assurance)", "GPA": "4.0", "year": "2017" },
+  ]
   "tracks": [
     {
       "id": "it",
