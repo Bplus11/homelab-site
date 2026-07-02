@@ -1,8 +1,7 @@
 {
   "tryhackme": {
-    "username": "YourTHMUsername",
-    "userPublicId": "YOUR_THM_PUBLIC_ID",
-    "profileUrl": "https://tryhackme.com/p/YourTHMUsername",
+    "username": "matthew.breckenridge",
+    "profileUrl": "https://tryhackme.com/p/matthew.breckenridge",
     "paths": [
       {
         "name": "Pre-Security",
