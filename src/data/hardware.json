@@ -1,0 +1,53 @@
+[
+  {
+    "id": "node-01",
+    "name": "Proxmox Node 01",
+    "type": "Server",
+    "role": "Hypervisor",
+    "make": "Dell",
+    "model": "PowerEdge R730",
+    "cpu": "2x Intel Xeon E5-2680 v4",
+    "ram_gb": 128,
+    "storage": [
+      { "type": "SSD", "size_gb": 480, "use": "OS" },
+      { "type": "HDD", "size_gb": 4000, "use": "VM Storage" }
+    ],
+    "nics": 4,
+    "location": "Rack U1",
+    "status": "Active"
+  },
+  {
+    "id": "router-01",
+    "name": "Primary Router",
+    "type": "Network",
+    "role": "Router / Firewall",
+    "make": "Your Make",
+    "model": "Your Model",
+    "location": "Rack U2",
+    "status": "Active"
+  },
+  {
+    "id": "switch-01",
+    "name": "Core Switch",
+    "type": "Network",
+    "role": "Managed Switch",
+    "make": "Your Make",
+    "model": "Your Model",
+    "ports": 24,
+    "location": "Rack U3",
+    "status": "Active"
+  },
+  {
+    "id": "nas-01",
+    "name": "NAS",
+    "type": "Storage",
+    "role": "Network Attached Storage",
+    "make": "Your Make",
+    "model": "Your Model",
+    "storage": [
+      { "type": "HDD", "size_gb": 8000, "use": "Media / Backups" }
+    ],
+    "location": "Rack U4",
+    "status": "Active"
+  }
+]

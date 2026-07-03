@@ -1,0 +1,47 @@
+[
+  {
+    "id": "vm-101",
+    "name": "Windows Server 2022 DC",
+    "host": "node-01",
+    "vmid": 101,
+    "os": "Windows Server 2022",
+    "role": "Active Directory Domain Controller",
+    "vcpus": 4,
+    "ram_gb": 8,
+    "disk_gb": 100,
+    "ip": "192.168.10.10",
+    "vlan": 10,
+    "status": "Running",
+    "tags": ["AD", "DNS", "DHCP"]
+  },
+  {
+    "id": "vm-102",
+    "name": "Security Onion",
+    "host": "node-01",
+    "vmid": 102,
+    "os": "Security Onion 2.4",
+    "role": "SIEM / IDS / NSM",
+    "vcpus": 4,
+    "ram_gb": 16,
+    "disk_gb": 200,
+    "ip": "192.168.10.20",
+    "vlan": 10,
+    "status": "Running",
+    "tags": ["Security", "SIEM", "IDS"]
+  },
+  {
+    "id": "vm-103",
+    "name": "Ubuntu Server",
+    "host": "node-01",
+    "vmid": 103,
+    "os": "Ubuntu Server 24.04",
+    "role": "General Purpose / Docker Host",
+    "vcpus": 2,
+    "ram_gb": 4,
+    "disk_gb": 50,
+    "ip": "192.168.10.30",
+    "vlan": 10,
+    "status": "Running",
+    "tags": ["Linux", "Docker"]
+  }
+]

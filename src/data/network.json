@@ -1,0 +1,16 @@
+{
+  "vlans": [
+    { "id": 10, "name": "Management",   "subnet": "192.168.10.0/24", "description": "Homelab management and infrastructure" },
+    { "id": 20, "name": "Servers",      "subnet": "192.168.20.0/24", "description": "Production VMs and services" },
+    { "id": 30, "name": "Security Lab", "subnet": "192.168.30.0/24", "description": "Isolated security lab — AD, Security Onion, attack VMs" },
+    { "id": 40, "name": "IoT",          "subnet": "192.168.40.0/24", "description": "Smart home and IoT devices, isolated from main network" },
+    { "id": 99, "name": "Guest",        "subnet": "192.168.99.0/24", "description": "Guest WiFi, no LAN access" }
+  ],
+  "dns": {
+    "primary": "192.168.10.10",
+    "secondary": "1.1.1.1",
+    "domain": "lab.local"
+  },
+  "gateway": "192.168.10.1",
+  "isp_uplink": "Your ISP — speed"
+}
