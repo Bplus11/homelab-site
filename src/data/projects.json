@@ -1,20 +1,39 @@
 [
   {
-    "slug": "homelab-inventory",
-    "title": "Proxmox Homelab Cluster",
-    "summary": "Currently 1 node Proxmox machine running various VMs for security and networking purposes",
-    "tags": ["Proxmox", "SecOnion", "Active Directory", "Networking"],
-    "github": "Bplus11/homelab-inventory",
-    "status": "Active",
-    "details": "Placeholder for now as I build out the homelab-inventory repository. I plan to have notes, diagrams, and write-ups about this project go here. You can write in plain HTML/Markdown-ish text in this field, or convert these to .md files later if you want richer formatting."
-  },
-  {
     "slug": "this-website",
     "title": "This Website",
-    "summary": "The site you're looking at right now.",
-    "tags": ["Astro", "Static Site", "Self-hosted"],
+    "summary": "The Astro site you're looking at right now — portfolio, project tracker, and hobby hub.",
+    "tags": ["Astro", "Static Site", "Netlify", "JSON"],
     "github": "Bplus11/homelab-site",
     "status": "Active",
-    "details": "Built with Astro, deployed to a free static host, data stored as JSON files in the repo. Learning to edit it as I build it out with some help from Claude."
+    "details": "Built with Astro, deployed to Netlify, data stored as JSON files in the repo. Covers projects, resume, MTG collection, board games, D&D campaigns, and learning progress."
+  },
+  {
+    "slug": "homelab-inventory",
+    "title": "Homelab Inventory",
+    "summary": "Structured inventory of homelab hardware, VMs, and network topology — with a visual network map.",
+    "tags": ["Documentation", "JSON", "Networking", "Proxmox"],
+    "github": "Bplus11/homelab-inventory",
+    "status": "Active",
+    "details": "A living snapshot of the homelab: physical hardware specs, VM configurations, VLAN layout, and a canvas-rendered network diagram. Designed to eventually transition into a live asset tracker as the lab grows.",
+    "inventoryLink": "/inventory"
+  },
+  {
+    "slug": "active-directory-lab",
+    "title": "Active Directory Lab",
+    "summary": "Windows Server 2022 AD environment with domain controllers, GPOs, OUs, and scripted user provisioning.",
+    "tags": ["Windows Server", "Active Directory", "DNS", "PowerShell", "Proxmox"],
+    "github": "Bplus11/active-directory-lab",
+    "status": "Active",
+    "details": "Built on Proxmox using Windows Server 2022. Covers DC setup, OU structure, Group Policy enforcement, DNS configuration, and PowerShell scripts for bulk user provisioning. Built to mirror enterprise AD environments for hands-on learning."
+  },
+  {
+    "slug": "security-onion-lab",
+    "title": "Security Onion Lab",
+    "summary": "Security Onion 2.4 deployment for network security monitoring, IDS/IPS, and SIEM in the homelab.",
+    "tags": ["Security Onion", "SIEM", "IDS", "NSM", "Blue Team"],
+    "github": "Bplus11/security-onion-lab",
+    "status": "Active",
+    "details": "Deployed on Proxmox, configured to monitor homelab traffic across VLANs. Covers initial setup, sensor configuration, detection rule tuning, and integration notes. Used alongside TryHackMe learning paths for hands-on blue team practice."
   }
 ]
