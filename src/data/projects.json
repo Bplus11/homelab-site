@@ -1,0 +1,124 @@
+[
+  {
+    "slug": "proxmox-homelab",
+    "title": "Proxmox Homelab Cluster",
+    "summary": "The core of the homelab — a Proxmox-based hypervisor running all lab VMs, with VLAN-segmented networking and a structured VM inventory.",
+    "tags": ["Proxmox", "Virtualization", "Networking", "VLANs"],
+    "github": "",
+    "status": "Active",
+    "inventoryLink": "/inventory",
+    "sections": [
+      {
+        "heading": "Overview",
+        "content": "The homelab runs on a Proxmox hypervisor hosting all lab VMs across segmented VLANs. Built to mirror enterprise infrastructure for hands-on learning and experimentation."
+      },
+      {
+        "heading": "Goals",
+        "content": "Provide an isolated, production-like environment for running security tools, Active Directory, and various self-hosted services without impacting the main home network."
+      }
+    ],
+    "codeSnippets": [],
+    "images": []
+  },
+  {
+    "slug": "active-directory-lab",
+    "title": "Active Directory Lab",
+    "summary": "Windows Server 2022 AD environment with domain controllers, GPOs, OUs, and scripted user provisioning.",
+    "tags": ["Windows Server", "Active Directory", "DNS", "PowerShell", "Proxmox"],
+    "github": "Bplus11/active-directory-lab",
+    "status": "Active",
+    "inventoryLink": "",
+    "sections": [
+      {
+        "heading": "Overview",
+        "content": "A full Active Directory environment built on Proxmox using Windows Server 2022. Designed to mirror enterprise AD setups for hands-on learning of domain administration, group policy, and identity management."
+      },
+      {
+        "heading": "What's Included",
+        "content": "Domain controller setup, OU structure, Group Policy enforcement, DNS configuration, and PowerShell scripts for bulk user provisioning."
+      },
+      {
+        "heading": "Goals",
+        "content": "Build familiarity with AD administration tasks commonly encountered in enterprise environments — user/group management, GPO design, DNS, and DHCP — as well as AD attack surfaces relevant to security work."
+      }
+    ],
+    "codeSnippets": [
+      {
+        "label": "Bulk user creation script",
+        "language": "powershell",
+        "code": "# Example: Create users from CSV\nImport-Csv .\\users.csv | ForEach-Object {\n    New-ADUser -Name $_.Name `\n               -GivenName $_.FirstName `\n               -Surname $_.LastName `\n               -SamAccountName $_.Username `\n               -UserPrincipalName \"$($_.Username)@lab.local\" `\n               -Path \"OU=Users,DC=lab,DC=local\" `\n               -AccountPassword (ConvertTo-SecureString $_.Password -AsPlainText -Force) `\n               -Enabled $true\n}"
+      }
+    ],
+    "images": []
+  },
+  {
+    "slug": "security-lab",
+    "title": "Security Lab / Threat Hunting",
+    "summary": "An isolated lab environment for practicing threat hunting, detection engineering, and incident response using Security Onion and simulated attack scenarios.",
+    "tags": ["Security Onion", "SIEM", "Threat Hunting", "Blue Team", "Detection Engineering"],
+    "github": "Bplus11/security-onion-lab",
+    "status": "In Progress",
+    "inventoryLink": "",
+    "sections": [
+      {
+        "heading": "Overview",
+        "content": "A dedicated security lab running Security Onion for network security monitoring, IDS/IPS, and SIEM capabilities. Used to practice threat hunting against simulated attack scenarios in an isolated VLAN."
+      },
+      {
+        "heading": "Lab Setup",
+        "content": "Security Onion deployed on Proxmox, configured to monitor traffic across the security lab VLAN. Attacker and victim VMs are isolated from the rest of the homelab network."
+      },
+      {
+        "heading": "Planned Scenarios",
+        "content": "Mock threat hunting exercises including lateral movement detection, C2 traffic identification, credential dumping alerts, and log analysis workflows."
+      }
+    ],
+    "codeSnippets": [],
+    "images": []
+  },
+  {
+    "slug": "ctf-writeups",
+    "title": "CTF Write-ups",
+    "summary": "Capture the Flag challenge write-ups from TryHackMe and HackTheBox — methodology, tools used, and lessons learned.",
+    "tags": ["CTF", "TryHackMe", "HackTheBox", "Penetration Testing", "Blue Team"],
+    "github": "",
+    "status": "Active",
+    "inventoryLink": "",
+    "sections": [
+      {
+        "heading": "About",
+        "content": "A running log of CTF challenges I've completed. Each write-up covers the machine or room, my methodology, tools used, key findings, and lessons learned. Focused on both offensive and defensive skill-building."
+      }
+    ],
+    "codeSnippets": [],
+    "images": [],
+    "writeups": [
+      {
+        "title": "Blue",
+        "platform": "TryHackMe",
+        "difficulty": "Easy",
+        "completed": "2026-07",
+        "tags": ["EternalBlue", "MS17-010", "Metasploit"],
+        "summary": "Exploited the MS17-010 EternalBlue vulnerability on a Windows 7 machine. Good intro to Metasploit and understanding unpatched SMB vulnerabilities.",
+        "url": "https://tryhackme.com/room/blue"
+      }
+    ]
+  },
+  {
+    "slug": "this-website",
+    "title": "This Website",
+    "summary": "The Astro site you're looking at — portfolio, project tracker, and hobby hub.",
+    "tags": ["Astro", "Static Site", "Vercel", "JSON"],
+    "github": "Bplus11/homelab-site",
+    "status": "Active",
+    "inventoryLink": "",
+    "sections": [
+      {
+        "heading": "Overview",
+        "content": "Built with Astro and deployed to Vercel. All content is stored as JSON files in the GitHub repo — no database, no backend. Covers projects, resume, books, board games, TTRPG campaigns, and learning progress."
+      }
+    ],
+    "codeSnippets": [],
+    "images": []
+  }
+]

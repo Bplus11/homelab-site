@@ -1,0 +1,227 @@
+---
+import Base from '../layouts/Base.astro';
+import hardware from '../data/hardware.json';
+import vms from '../data/vms.json';
+import network from '../data/network.json';
+
+const statusColor = (s) => {
+  if (s === 'Running' || s === 'Active') return '#9adf9a';
+  if (s === 'Stopped') return '#df9a9a';
+  return '#dfcf7a';
+};
+---
+<Base title="Homelab Inventory">
+  <h1>Homelab Inventory</h1>
+  <p>
+    A snapshot of the current homelab infrastructure. Data lives in
+    <a href="https://github.com/Bplus11/homelab-inventory" target="_blank" rel="noopener">Bplus11/homelab-inventory</a>
+    and is updated manually as the lab evolves.
+  </p>
+
+  <!-- ── Network Map ── -->
+  <h2>Network Map</h2>
+  <div class="card" style="padding:0;overflow:hidden;">
+    <canvas id="network-map" style="width:100%;display:block;"></canvas>
+  </div>
+
+  <!-- ── VLANs ── -->
+  <h2 style="margin-top:2rem;">VLANs</h2>
+  <table>
+    <thead>
+      <tr><th>ID</th><th>Name</th><th>Subnet</th><th>Purpose</th></tr>
+    </thead>
+    <tbody>
+      {network.vlans.map((v) => (
+        <tr>
+          <td><span class="tag">VLAN {v.id}</span></td>
+          <td>{v.name}</td>
+          <td><code>{v.subnet}</code></td>
+          <td style="color:var(--text-dim);">{v.description}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+
+  <!-- ── Hardware ── -->
+  <h2 style="margin-top:2rem;">Physical Hardware</h2>
+  <div class="grid">
+    {hardware.map((h) => (
+      <div class="card">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+          <h3 style="margin:0 0 0.25rem;">{h.name}</h3>
+          <span style={`font-size:0.75rem;color:${statusColor(h.status)};`}>● {h.status}</span>
+        </div>
+        <p style="color:var(--text-dim);margin:0 0 0.6rem;font-size:0.85rem;">{h.role}</p>
+        {h.make && <p style="margin:0 0 0.25rem;font-size:0.9rem;">{h.make} {h.model}</p>}
+        {h.cpu && <p style="margin:0;font-size:0.85rem;color:var(--text-dim);">CPU: {h.cpu}</p>}
+        {h.ram_gb && <p style="margin:0;font-size:0.85rem;color:var(--text-dim);">RAM: {h.ram_gb} GB</p>}
+        {h.storage && (
+          <p style="margin:0;font-size:0.85rem;color:var(--text-dim);">
+            Storage: {h.storage.map((s) => `${s.size_gb >= 1000 ? s.size_gb/1000+'TB' : s.size_gb+'GB'} ${s.type} (${s.use})`).join(' · ')}
+          </p>
+        )}
+        {h.ports && <p style="margin:0;font-size:0.85rem;color:var(--text-dim);">{h.ports}-port</p>}
+        <p style="margin:0.5rem 0 0;font-size:0.8rem;color:var(--text-dim);">{h.location}</p>
+      </div>
+    ))}
+  </div>
+
+  <!-- ── VMs ── -->
+  <h2 style="margin-top:2rem;">Virtual Machines</h2>
+  <div class="toolbar">
+    <input type="search" id="vm-search" placeholder="Filter by name, role, or tag…" />
+  </div>
+  <table id="vm-table">
+    <thead>
+      <tr><th>VM</th><th>Role</th><th>OS</th><th>Resources</th><th>IP</th><th>Status</th></tr>
+    </thead>
+    <tbody>
+      {vms.map((vm) => (
+        <tr data-search={`${vm.name} ${vm.role} ${vm.tags?.join(' ')}`.toLowerCase()}>
+          <td>
+            <strong>{vm.name}</strong>
+            <br/><span style="color:var(--text-dim);font-size:0.8rem;">VMID {vm.vmid}</span>
+          </td>
+          <td>{vm.role}</td>
+          <td style="font-size:0.85rem;">{vm.os}</td>
+          <td style="font-size:0.85rem;color:var(--text-dim);">
+            {vm.vcpus}vCPU · {vm.ram_gb}GB · {vm.disk_gb}GB
+          </td>
+          <td><code style="font-size:0.82rem;">{vm.ip}</code></td>
+          <td><span style={`font-size:0.8rem;color:${statusColor(vm.status)};`}>● {vm.status}</span></td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+  <p id="vm-no-results" class="empty-state" style="display:none;">No VMs match that filter.</p>
+</Base>
+
+<script define:vars={{ hardware, vms, network }}>
+// ── VM filter ──
+const vmSearch = document.getElementById('vm-search');
+const vmRows = Array.from(document.querySelectorAll('#vm-table tbody tr'));
+const vmNoResults = document.getElementById('vm-no-results');
+vmSearch?.addEventListener('input', () => {
+  const q = vmSearch.value.trim().toLowerCase();
+  let visible = 0;
+  vmRows.forEach((r) => {
+    const show = r.dataset.search.includes(q);
+    r.style.display = show ? '' : 'none';
+    if (show) visible++;
+  });
+  vmNoResults.style.display = visible === 0 ? 'block' : 'none';
+});
+
+// ── Network Map (Canvas) ──
+const canvas = document.getElementById('network-map');
+const dpr = window.devicePixelRatio || 1;
+const W = canvas.parentElement.clientWidth;
+const H = Math.min(420, W * 0.55);
+canvas.width = W * dpr;
+canvas.height = H * dpr;
+canvas.style.height = H + 'px';
+const ctx = canvas.getContext('2d');
+ctx.scale(dpr, dpr);
+
+const C = { bg: '#0f1115', card: '#171a21', border: '#2a2e38', text: '#e6e8ec', dim: '#9aa0ad', accent: '#5eb1ff', green: '#7ee787', yellow: '#dfcf7a' };
+
+ctx.fillStyle = C.bg;
+ctx.fillRect(0, 0, W, H);
+
+function roundRect(x, y, w, h, r, fill, stroke) {
+  ctx.beginPath();
+  ctx.roundRect(x, y, w, h, r);
+  if (fill) { ctx.fillStyle = fill; ctx.fill(); }
+  if (stroke) { ctx.strokeStyle = stroke; ctx.lineWidth = 1.5; ctx.stroke(); }
+}
+
+function label(text, x, y, color = C.text, size = 11, weight = '400') {
+  ctx.font = `${weight} ${size}px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif`;
+  ctx.fillStyle = color;
+  ctx.textAlign = 'center';
+  ctx.fillText(text, x, y);
+}
+
+function line(x1, y1, x2, y2, color = C.border, dash = []) {
+  ctx.beginPath();
+  ctx.setLineDash(dash);
+  ctx.strokeStyle = color;
+  ctx.lineWidth = 1.5;
+  ctx.moveTo(x1, y1);
+  ctx.lineTo(x2, y2);
+  ctx.stroke();
+  ctx.setLineDash([]);
+}
+
+// Layout nodes
+const cx = W / 2;
+const isp    = { x: cx,  y: 36  };
+const router = { x: cx,  y: 110 };
+const sw     = { x: cx,  y: 200 };
+
+// VLAN nodes — fan out below switch
+const vlanColors = ['#5eb1ff', '#7ee787', '#f5c518', '#ff7b7b', '#b07bff'];
+const vlanCount = network.vlans.length;
+const vlanSpacing = Math.min(120, (W - 80) / vlanCount);
+const vlanY = 310;
+
+// ISP
+roundRect(cx - 120, isp.y - 18, 240, 34, 6, C.card, C.border);
+label('🌐 ' + network.isps.map(i => i.name + ' (' + i.type + ')').join(' / '), cx, isp.y + 5, C.dim, 10);
+
+// Line ISP→Router
+line(cx, isp.y + 16, cx, router.y - 18, C.accent);
+
+// Router
+roundRect(cx - 70, router.y - 18, 140, 36, 8, '#1a2535', C.accent);
+label('⬡ Router / Firewall', cx, router.y - 2, C.accent, 11, '600');
+label(network.gateway, cx, router.y + 12, C.dim, 10);
+
+// Line Router→Switch
+line(cx, router.y + 18, cx, sw.y - 18, C.accent);
+
+// Switch
+roundRect(cx - 70, sw.y - 18, 140, 36, 8, '#1a2535', '#7ee787');
+label('⬡ Core Switch', cx, sw.y - 2, C.green, 11, '600');
+const hw_sw = hardware.find(h => h.role?.toLowerCase().includes('switch'));
+if (hw_sw) label(hw_sw.model || '', cx, sw.y + 12, C.dim, 10);
+
+// VLANs
+const vlanStartX = cx - ((vlanCount - 1) * vlanSpacing) / 2;
+network.vlans.forEach((vlan, i) => {
+  const vx = vlanStartX + i * vlanSpacing;
+  const col = vlanColors[i % vlanColors.length];
+
+  // Line from switch to VLAN
+  line(cx, sw.y + 18, vx, vlanY - 22, col, [4, 3]);
+
+  // VLAN box
+  roundRect(vx - 46, vlanY - 22, 92, 44, 8, C.card, col);
+  label(`VLAN ${vlan.id}`, vx, vlanY - 6, col, 10, '700');
+  label(vlan.name, vx, vlanY + 7, C.text, 10);
+  label(vlan.subnet, vx, vlanY + 18, C.dim, 9);
+});
+
+// VM count badge on switch
+const vmCount = vms.length;
+ctx.beginPath();
+ctx.arc(cx + 72, sw.y - 16, 10, 0, Math.PI * 2);
+ctx.fillStyle = C.accent;
+ctx.fill();
+label(String(vmCount), cx + 72, sw.y - 12, '#06121f', 10, '700');
+
+// Legend
+const legY = H - 18;
+[['● Active', C.green], ['● Router / FW', C.accent], ['- - VLAN', C.dim]].forEach(([txt, col], i) => {
+  ctx.font = '10px -apple-system,sans-serif';
+  ctx.fillStyle = col;
+  ctx.textAlign = 'left';
+  ctx.fillText(txt, 16 + i * 110, legY);
+});
+
+// VM count label
+ctx.textAlign = 'right';
+ctx.fillStyle = C.dim;
+ctx.font = '10px -apple-system,sans-serif';
+ctx.fillText(`${vmCount} VMs running on hypervisor`, W - 16, legY);
+</script>

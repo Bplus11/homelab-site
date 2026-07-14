@@ -1,0 +1,93 @@
+{
+  "certifications": [
+    {
+      "name": "Associate - Information Storage and Management Version 5.0",
+      "issuer": "Dell Technologies",
+      "status": "Earned",
+      "date": "2022-09",
+      "expires": "",
+      "credentialId": "99647f83-7238-4b1b-9c99-cb32034744d7",
+      "verifyUrl": "",
+      "badge": "/badges/associate-ism.png"
+    },
+    {
+      "name": "Security Foundations 2023",
+      "issuer": "Dell Technologies",
+      "status": "Earned",
+      "date": "2024-01",
+      "expires": "",
+      "credentialId": "277efca4-663d-4e42-af37-1064be3b3f0f",
+      "verifyUrl": "",
+      "badge": "/badges/dell-security-foundations-2023.png"
+    },
+    {
+      "name": "CompTIA A+",
+      "issuer": "CompTIA",
+      "status": "Earned",
+      "date": "2017-06",
+      "expires": "2029-06",
+      "credentialId": "C5PB38DNLCQ413S6",
+      "verifyUrl": "https://www.certmetrics.com/comptia/public/verification.aspx",
+      "badge": "/badges/comptia-aplus.png"
+    },
+    {
+      "name": "CompTIA Network+",
+      "issuer": "CompTIA",
+      "status": "In Progress",
+      "date": "",
+      "expires": "",
+      "credentialId": "",
+      "verifyUrl": "",
+      "badge": ""
+    },
+    {
+      "name": "ISO/IEC 27001 Lead Auditor",
+      "issuer": "GRC Mastery",
+      "status": "Planned",
+      "date": "",
+      "expires": "",
+      "credentialId": "",
+      "verifyUrl": "",
+      "badge": ""
+    }
+  ],
+  "tryhackme": {
+    "username": "matthew.breckenridge",
+    "profileUrl": "https://tryhackme.com/p/matthew.breckenridge",
+    "earnedBadges": [
+      "First 4 Rooms",
+      "7-Day Streak",
+      "3-Day Streak",
+      "Network Fundamentals",
+      "Web Fundamentals",
+      "World Wide Web",
+      "Silver League",
+      "Terminaled",
+      "Session Held",
+      "Metasploitable",
+      "Blue"
+    ],
+    "paths": [
+      {
+        "name": "Pre-Security",
+        "status": "Complete",
+        "completedDate": "2026-06"
+      },
+      {
+        "name": "Introduction to Cybersecurity",
+        "status": "In Progress",
+        "completedDate": ""
+      }
+    ],
+    "highlightRooms": [
+      { "name": "Linux Fundamentals Part 1", "url": "https://tryhackme.com/room/linuxfundamentalspart1", "status": "Complete" },
+      { "name": "Nmap", "url": "https://tryhackme.com/room/furthernmap", "status": "Complete" }
+    ]
+  },
+  "hackthebox": {
+    "username": "",
+    "profileUrl": "",
+    "rank": "",
+    "machines": []
+  }
+}

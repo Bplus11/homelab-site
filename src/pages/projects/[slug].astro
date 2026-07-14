@@ -1,0 +1,159 @@
+---
+import Base from '../../layouts/Base.astro';
+import projects from '../../data/projects.json';
+
+export function getStaticPaths() {
+  return projects.map((p) => ({ params: { slug: p.slug }, props: { project: p } }));
+}
+
+const { project } = Astro.props;
+
+const statusColor = (s) => {
+  if (s === 'Active') return 'border-color:#3a4a3a;color:#9adf9a;';
+  if (s === 'In Progress') return 'border-color:#3a3a20;color:#dfcf7a;';
+  if (s === 'Planned') return 'border-color:#2a2e38;color:#9aa0ad;';
+  return '';
+};
+
+const difficultyColor = (d) => {
+  if (d === 'Easy') return 'border-color:#3a4a3a;color:#9adf9a;';
+  if (d === 'Medium') return 'border-color:#3a3a20;color:#dfcf7a;';
+  if (d === 'Hard') return 'border-color:#4a2a2a;color:#df9a9a;';
+  return '';
+};
+
+const formatDate = (dateStr) => {
+  if (!dateStr) return '';
+  const d = new Date(dateStr + '-01');
+  return d.toLocaleDateString('en-US', { year: 'numeric', month: 'short' });
+};
+
+const langClass = (lang) => lang?.toLowerCase() ?? 'text';
+---
+<Base title={`${project.title} — Projects`}>
+  <p><a href="/projects">← Back to Projects</a></p>
+
+  <!-- Header -->
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:0.75rem;margin-bottom:0.5rem;">
+    <h1 style="margin:0;">{project.title}</h1>
+    <span class="tag" style={statusColor(project.status)}>{project.status}</span>
+  </div>
+  <div style="margin-bottom:1.25rem;">
+    {project.tags.map((t) => <span class="tag">{t}</span>)}
+  </div>
+
+  <!-- GitHub card -->
+  {project.github && (
+    <div class="card" id="github-card" data-repo={project.github} style="margin-bottom:1.5rem;">
+      <p class="empty-state">Loading GitHub repo info…</p>
+    </div>
+  )}
+
+  <!-- Inventory link -->
+  {project.inventoryLink && (
+    <div class="card" style="margin-bottom:1.5rem;border-color:#2a3a5a;">
+      <p style="margin:0;">
+        📊 <a href={project.inventoryLink}>View full Lab Inventory — hardware, VMs, and network map →</a>
+      </p>
+    </div>
+  )}
+
+  <!-- Write-up sections -->
+  {project.sections && project.sections.map((s) => (
+    <div style="margin-bottom:1.5rem;">
+      <h2>{s.heading}</h2>
+      <p style="line-height:1.7;">{s.content}</p>
+    </div>
+  ))}
+
+  <!-- Images -->
+  {project.images && project.images.length > 0 && (
+    <div style="margin-bottom:1.5rem;">
+      <h2>Screenshots / Diagrams</h2>
+      <div class="grid" style="grid-template-columns:repeat(auto-fill,minmax(300px,1fr));">
+        {project.images.map((img) => (
+          <div class="card" style="padding:0.75rem;">
+            <img
+              src={img.src}
+              alt={img.caption ?? ''}
+              style="width:100%;border-radius:6px;display:block;"
+            />
+            {img.caption && (
+              <p style="color:var(--text-dim);font-size:0.82rem;margin:0.5rem 0 0;text-align:center;">{img.caption}</p>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  )}
+
+  <!-- Code snippets -->
+  {project.codeSnippets && project.codeSnippets.length > 0 && (
+    <div style="margin-bottom:1.5rem;">
+      <h2>Code</h2>
+      {project.codeSnippets.map((snippet) => (
+        <div style="margin-bottom:1.25rem;">
+          {snippet.label && (
+            <p style="color:var(--text-dim);font-size:0.85rem;margin:0 0 0.4rem;">{snippet.label}</p>
+          )}
+          <pre style="background:#0d1117;border:1px solid var(--border);border-radius:8px;padding:1.25rem;overflow-x:auto;margin:0;"><code class={`language-${langClass(snippet.language)}`} style="font-family:'JetBrains Mono','Fira Code','Cascadia Code',Consolas,monospace;font-size:0.85rem;line-height:1.6;color:#e6e8ec;white-space:pre;">{snippet.code}</code></pre>
+        </div>
+      ))}
+    </div>
+  )}
+
+  <!-- CTF Write-ups (only shown on the ctf-writeups project) -->
+  {project.writeups && project.writeups.length > 0 && (
+    <div>
+      <h2>Write-ups</h2>
+      {project.writeups.map((w) => (
+        <div class="card" id={w.title.toLowerCase().replace(/\s+/g,'-')} style="margin-bottom:1rem;">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:0.5rem;">
+            <div>
+              <h3 style="margin:0 0 0.2rem;">{w.title}</h3>
+              <p style="color:var(--text-dim);margin:0;font-size:0.85rem;">
+                {w.platform}
+                {w.completed && <> · {formatDate(w.completed)}</>}
+              </p>
+            </div>
+            <div style="display:flex;gap:0.4rem;flex-wrap:wrap;align-items:center;">
+              <span class="tag" style={difficultyColor(w.difficulty)}>{w.difficulty}</span>
+              {w.url && <a href={w.url} target="_blank" rel="noopener" style="font-size:0.82rem;">Room →</a>}
+            </div>
+          </div>
+          <div style="margin:0.5rem 0;">
+            {w.tags.map((t) => <span class="tag">{t}</span>)}
+          </div>
+          {w.summary && <p style="margin:0.5rem 0 0;line-height:1.6;">{w.summary}</p>}
+        </div>
+      ))}
+    </div>
+  )}
+</Base>
+
+<script>
+  const card = document.getElementById('github-card');
+  if (card) {
+    const repo = card.dataset.repo;
+    fetch(`https://api.github.com/repos/${repo}`)
+      .then((r) => {
+        if (!r.ok) throw new Error('Repo not found or rate-limited');
+        return r.json();
+      })
+      .then((data) => {
+        card.innerHTML = `
+          <h3><a href="${data.html_url}" target="_blank" rel="noopener">${data.full_name}</a></h3>
+          <p>${data.description ?? ''}</p>
+          <div>
+            <span class="tag">⭐ ${data.stargazers_count}</span>
+            <span class="tag">🍴 ${data.forks_count}</span>
+            ${data.language ? `<span class="tag">${data.language}</span>` : ''}
+          </div>
+          <p style="margin-top:0.75rem;"><a href="${data.html_url}" target="_blank" rel="noopener">View on GitHub →</a></p>
+        `;
+      })
+      .catch((err) => {
+        card.innerHTML = `<p class="empty-state">Couldn't load GitHub info: ${err.message}</p>`;
+      });
+  }
+</script>

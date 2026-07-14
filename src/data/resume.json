@@ -1,0 +1,78 @@
+{
+  "name": "Matthew Breckenridge",
+  "location": "Johnston, Iowa, USA",
+  "email": "matthew.breckenridge@gmail.com",
+  "links": [
+    { "label": "GitHub", "url": "https://github.com/Bplus11" },
+    { "label": "LinkedIn", "url": "https://www.linkedin.com/in/matthewbreckenridge-it/" }
+  ],
+  "summary": "IT and pharmacy operations professional with a unique blend of infrastructure management, hands-on technical troubleshooting, and clinical procurement/compliance expertise. Proven leadership in IT projects, team coordination, and customer-facing technical support, paired with deep experience managing complex pharmaceutical inventory systems and federal regulatory compliance (340B, DSCSA, DEA). Combines analytical, compliance-driven problem solving with strong vendor relationship management and a track record of mentoring and training staff.",
+  "education": [
+    { "school": "Kaplan University", "credential": "Associate of Applied Science in IT", "GPA": "4.0", "year": "2015" },
+    { "school": "Purdue University Global", "credential": "Bachelor of Applied Science in IT (Concentration: Information Security & Assurance)", "GPA": "4.0", "year": "2017" }
+  ],
+  "tracks": [
+    {
+      "id": "it",
+      "label": "Information Technology",
+      "icon": "💻",
+      "title": "Field Engineer / Aspiring Security Analyst",
+      "summary": "IT-specific summary for technical hiring managers — homelab, infrastructure, tooling, etc.",
+      "skills": ["Windows OS", "Active Directory", "Linux", "Hardware Support", "Networking", "Proxmox", "Risk Assessment", "Business Impact Analysis"],
+      "experience": [
+        {
+          "company": "Tek Systems | Contractor at AMD",
+          "role": "Data Center Technician III",
+          "start": "Dec-2025",
+          "end": "Apr-2026",
+          "bullets": [
+            "Prepared, staged, and executed hardware lifecycle tasks (startups, shutdowns, rack/drive/switch installations) using standardized checklists and protocols; assisted other technicians with complex tasks to ensure consistent service delivery.",
+            "Troubleshot network issues across Layer-1, Layer-2, and Layer-3; utilized experience with Windows Server OS and Linux for administration and deployment support.",
+            "Decommissioned and refreshed hardware (memory upgrades, OS rebuilds) following standard procedures; administered software tools for diagnostics, testing, and firmware updates."
+          ]
+        },
+        {
+          "company": "Dell Technologies",
+          "role": "Field Service Engineer",
+          "start": "May-2022",
+          "end": "Dec-2025",
+          "bullets": [
+            "Performed onsite diagnostics, troubleshooting, and hardware repairs for Dell enterprise systems (PowerEdge servers, PowerScale/Isilon storage, networking equipment, etc.).",
+            "Replaced faulty components (e.g., motherboards, drives, power supplies) following Dell's ESD safety protocols and SLAs.",
+            "Provided customer training on hardware/software best practices and preventative maintenance, cultivating strong customer relationships and managing expectations throughout the service lifecycle.",
+            "Became a mentor to a new engineer within 3 months of employment."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pharmacy",
+      "label": "Pharmacy",
+      "icon": "⚕️",
+      "title": "Pharmacy Technician",
+      "summary": "Pharmacy-specific summary for healthcare hiring managers — clinical experience, settings, specialties.",
+      "skills": ["Clinical Review", "Sterile Compounding", "Automation", "Pharmacy Inventory Management", "Pharmacy Budget"],
+      "experience": [
+        {
+          "company": "VA Central Iowa Healthcare System",
+          "role": "Lead Pharmacy Procurement Technician",
+          "start": "2017",
+          "end": "2022",
+          "bullets": [
+            "Pharmacy accomplishment or responsibility one.",
+            "Pharmacy accomplishment or responsibility two."
+          ]
+        },
+        {
+          "company": "VA Central Iowa Healthcare System",
+          "role": "Pharmacy Tehnician",
+          "start": "2009",
+          "end": "2017",
+          "bullets": [
+
+          ]
+        }
+      ]
+    }
+  ]
+}

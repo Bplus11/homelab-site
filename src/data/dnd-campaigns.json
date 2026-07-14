@@ -1,0 +1,17 @@
+[
+  {
+    "slug": "curse-of-strahd",
+    "name": "Curse of Strahd",
+    "role": "Dungeon Master",
+    "status": "Active",
+    "characters": [
+      { "name": "Lira Ashwood", "player": "Player 1", "class": "Cleric", "level": 7 },
+      { "name": "Borin Thunderhammer", "player": "Player 2", "class": "Fighter", "level": 7 }
+    ],
+    "quests": [
+      { "title": "The Tarokka Reading", "status": "Complete" },
+      { "title": "Retrieve the Sunsword", "status": "In Progress" }
+    ],
+    "notes": "Session notes go here. You can write a running log per session, key NPCs, plot threads, etc."
+  }
+]

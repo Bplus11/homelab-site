@@ -1,0 +1,87 @@
+---
+import Base from '../../layouts/Base.astro';
+import books from '../../data/books.json';
+
+export function getStaticPaths() {
+  return books
+    .filter(b => b.type === 'series')
+    .map(b => ({ params: { id: b.id }, props: { series: b } }));
+}
+
+const { series } = Astro.props;
+
+const renderStars = (rating) => '★'.repeat(rating) + '☆'.repeat(5 - rating);
+
+const formatDate = (dateStr) => {
+  if (!dateStr) return '';
+  const d = new Date(dateStr + '-01');
+  return d.toLocaleDateString('en-US', { year: 'numeric', month: 'short' });
+};
+---
+<Base title={`${series.title} — Books`}>
+  <p><a href="/books">← Back to Books</a></p>
+
+  <!-- Series header -->
+  <h1>{series.title}</h1>
+  <p style="color:var(--text-dim);margin-top:-0.5rem;">
+    {series.author} · {series.books.length} book{series.books.length !== 1 ? 's' : ''}
+  </p>
+  <div style="margin-bottom:0.75rem;">
+    {series.genre.map(g => <span class="tag">{g}</span>)}
+  </div>
+
+  <!-- Series overall rating + review -->
+  {series.rating && (
+    <div class="card" style="margin-bottom:2rem;">
+      <div class="stars" style="font-size:1.1rem;margin-bottom:0.4rem;">{renderStars(series.rating)}</div>
+      {series.review && <p style="margin:0;">{series.review}</p>}
+    </div>
+  )}
+
+  <!-- Individual books -->
+  <h2>Books in this Series</h2>
+  <div style="display:flex;flex-direction:column;gap:1rem;">
+    {series.books.map((book) => {
+      const formats = Array.isArray(book.format) ? book.format : [book.format];
+      return (
+        <div class="card">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:0.5rem;">
+            <div>
+              <h3 style="margin:0 0 0.2rem;">
+                {book.seriesNumber && (
+                  <span style="color:var(--text-dim);font-weight:400;">#{book.seriesNumber} — </span>
+                )}
+                {book.title}
+              </h3>
+              <div style="margin-top:0.3rem;">
+                {formats.includes('audiobook') && <span class="tag">🎧 Audiobook</span>}
+                {formats.includes('kindle') && <span class="tag">📱 Kindle</span>}
+                {formats.includes('physical') && <span class="tag">📖 Physical</span>}
+                {formats.includes('audiobook') && book.narrators?.length > 0 && (
+                  <span style="color:var(--text-dim);font-size:0.8rem;margin-left:0.4rem;">
+                    Narrated by {book.narrators.join(', ')}
+                  </span>
+                )}
+              </div>
+            </div>
+            <div style="text-align:right;flex-shrink:0;">
+              {book.rating && (
+                <div class="stars">{renderStars(book.rating)}</div>
+              )}
+              {book.dateRead && (
+                <div style="color:var(--text-dim);font-size:0.8rem;margin-top:0.2rem;">
+                  {formatDate(book.dateRead)}
+                </div>
+              )}
+            </div>
+          </div>
+          {book.review && (
+            <p style="margin:0.75rem 0 0;color:var(--text-dim);font-size:0.9rem;line-height:1.5;">
+              {book.review}
+            </p>
+          )}
+        </div>
+      );
+    })}
+  </div>
+</Base>

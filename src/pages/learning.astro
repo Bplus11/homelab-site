@@ -1,0 +1,197 @@
+---
+import Base from '../layouts/Base.astro';
+import learning from '../data/learning.json';
+import workshops from '../data/workshops.json';
+
+const { tryhackme: thm, hackthebox: htb, certifications } = learning;
+
+const statusColor = (status) => {
+  if (status === 'Complete' || status === 'Earned') return 'border-color:#3a4a3a;color:#9adf9a;';
+  if (status === 'In Progress') return 'border-color:#3a3a20;color:#dfcf7a;';
+  if (status === 'Planned') return 'border-color:#2a2e38;color:#9aa0ad;';
+  return '';
+};
+
+const formatDate = (dateStr) => {
+  if (!dateStr) return '';
+  const d = new Date(dateStr + (dateStr.length === 7 ? '-01' : ''));
+  return d.toLocaleDateString('en-US', { year: 'numeric', month: 'short' });
+};
+---
+<Base title="Learning">
+  <h1>Learning &amp; Certifications</h1>
+  <p>Tracking my progress through cybersecurity platforms and workshops as I build skills in the field.</p>
+
+  <!-- ───── Professional Certifications ───── -->
+  <h2>Professional Certifications</h2>
+  {certifications.length === 0 ? (
+    <p class="empty-state">No certifications added yet — edit <code>src/data/learning.json</code>.</p>
+  ) : (
+    <div class="grid" style="grid-template-columns:repeat(auto-fill,minmax(280px,1fr));">
+      {certifications.map((cert) => (
+        <div class="card" style="position:relative;">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:0.5rem;">
+            <div>
+              <h3 style="margin:0 0 0.2rem;">{cert.name}</h3>
+              <p style="color:var(--text-dim);margin:0 0 0.6rem;font-size:0.9rem;">{cert.issuer}</p>
+            </div>
+            {cert.badge && (
+              <img src={cert.badge} alt={`${cert.name} badge`} style="width:48px;height:48px;object-fit:contain;" />
+            )}
+          </div>
+
+          <span class="tag" style={statusColor(cert.status)}>{cert.status}</span>
+
+          {cert.date && (
+            <p style="margin:0.6rem 0 0;font-size:0.85rem;color:var(--text-dim);">
+              Earned: <strong style="color:var(--text);">{formatDate(cert.date)}</strong>
+              {cert.expires && (
+                <> · Expires: <strong style="color:var(--text);">{formatDate(cert.expires)}</strong></>
+              )}
+            </p>
+          )}
+
+          {cert.credentialId && (
+            <p style="margin:0.3rem 0 0;font-size:0.8rem;color:var(--text-dim);">
+              ID: <code>{cert.credentialId}</code>
+            </p>
+          )}
+
+          {cert.verifyUrl && cert.credentialId && (
+            <p style="margin:0.5rem 0 0;">
+              <a href={cert.verifyUrl} target="_blank" rel="noopener" style="font-size:0.85rem;">
+                Verify credential →
+              </a>
+            </p>
+          )}
+        </div>
+      ))}
+    </div>
+  )}
+
+  <!-- ───── TryHackMe ───── -->
+  <h2>TryHackMe</h2>
+  <div class="card" style="display:flex;gap:2rem;flex-wrap:wrap;align-items:flex-start;">
+    <!-- THM Logo / Profile link -->
+    <div style="flex:0 0 auto;display:flex;flex-direction:column;align-items:center;gap:0.75rem;min-width:120px;">
+      <a href={thm.profileUrl} target="_blank" rel="noopener">
+        <img
+          src="https://tryhackme.com/img/favicon.png"
+          alt="TryHackMe"
+          style="width:64px;height:64px;border-radius:12px;border:1px solid #2a3a5a;"
+        />
+      </a>
+      <a href={thm.profileUrl} target="_blank" rel="noopener" style="font-size:0.85rem;text-align:center;">
+        {thm.username}<br/>View Profile →
+      </a>
+    </div>
+
+    <!-- Paths + Rooms + Badges -->
+    <div style="flex:1;min-width:260px;">
+      <h3 style="margin-top:0;">Learning Paths</h3>
+      {thm.paths.length === 0 ? (
+        <p class="empty-state">No paths added yet.</p>
+      ) : (
+        <table>
+          <thead>
+            <tr><th>Path</th><th>Status</th><th>Completed</th></tr>
+          </thead>
+          <tbody>
+            {thm.paths.map((p) => (
+              <tr>
+                <td>{p.name}</td>
+                <td><span class="tag" style={statusColor(p.status)}>{p.status}</span></td>
+                <td style="color:var(--text-dim);">{formatDate(p.completedDate)}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
+
+      {thm.highlightRooms.length > 0 && (
+        <>
+          <h3>Notable Rooms</h3>
+          <div>
+            {thm.highlightRooms.map((r) => (
+              <span class="tag" style={statusColor(r.status)}>
+                <a href={r.url} target="_blank" rel="noopener" style="color:inherit;">{r.name}</a>
+              </span>
+            ))}
+          </div>
+        </>
+      )}
+
+      {thm.earnedBadges && thm.earnedBadges.length > 0 && (
+        <>
+          <h3 style="margin-top:1.25rem;">Earned Badges</h3>
+          <div>
+            {thm.earnedBadges.map((b) => (
+              <span class="tag" style="border-color:#2a3a5a;color:#7eb8ff;">{b}</span>
+            ))}
+          </div>
+        </>
+      )}
+    </div>
+  </div>
+
+  <!-- ───── HackTheBox ───── -->
+  <h2>HackTheBox</h2>
+  <div class="card">
+    {htb.username ? (
+      <div>
+        <p>
+          <strong>{htb.username}</strong>
+          {htb.rank && <> · Rank: <span class="tag">{htb.rank}</span></>}
+          {htb.profileUrl && <> · <a href={htb.profileUrl} target="_blank" rel="noopener">View Profile →</a></>}
+        </p>
+        {htb.machines.length > 0 && (
+          <table>
+            <thead><tr><th>Machine</th><th>OS</th><th>Difficulty</th><th>Status</th></tr></thead>
+            <tbody>
+              {htb.machines.map((m) => (
+                <tr>
+                  <td>{m.name}</td>
+                  <td>{m.os}</td>
+                  <td>{m.difficulty}</td>
+                  <td><span class="tag" style={statusColor(m.status)}>{m.status}</span></td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
+      </div>
+    ) : (
+      <p class="empty-state">
+        HackTheBox coming soon — fill in your username and progress in <code>src/data/learning.json</code> when you're ready to start.
+      </p>
+    )}
+  </div>
+
+  <!-- ───── Workshops & Bootcamps ───── -->
+  <h2>Workshops &amp; Bootcamps</h2>
+  {workshops.length === 0 ? (
+    <p class="empty-state">No workshops added yet — edit <code>src/data/workshops.json</code>.</p>
+  ) : (
+    <div>
+      {workshops.map((w) => (
+        <div class="card">
+          <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:0.5rem;align-items:flex-start;">
+            <div>
+              <h3 style="margin:0;">{w.title}</h3>
+              <p style="color:var(--text-dim);margin:0.2rem 0 0.5rem;">
+                {w.organizer} · {formatDate(w.date)}
+              </p>
+            </div>
+            {w.certificate && (
+              <a href={w.certificate} target="_blank" rel="noopener" style="font-size:0.85rem;">
+                Certificate →
+              </a>
+            )}
+          </div>
+          <div>{w.topics.map((t) => <span class="tag">{t}</span>)}</div>
+          {w.notes && <p style="margin-top:0.75rem;">{w.notes}</p>}
+        </div>
+      ))}
+    </div>
+  )}
+</Base>

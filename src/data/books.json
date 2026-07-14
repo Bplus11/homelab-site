@@ -1,0 +1,248 @@
+[
+  {
+    "id": "stormlight-archive",
+    "type": "series",
+    "title": "The Stormlight Archive",
+    "author": "Brandon Sanderson",
+    "genre": [
+      "Fantasy",
+      "Epic Fantasy"
+    ],
+    "books": [
+      {
+        "title": "The Way of Kings",
+        "seriesNumber": 1,
+        "format": "audiobook",
+        "narrators": [
+          "Michael Kramer",
+          "Kate Reading"
+        ],
+        "rating": 5,
+        "review": "An absolute masterpiece of world-building.",
+        "dateRead": "2024-03"
+      },
+      {
+        "title": "Words of Radiance",
+        "seriesNumber": 2,
+        "format": "audiobook",
+        "narrators": [
+          "Michael Kramer",
+          "Kate Reading"
+        ],
+        "rating": 5,
+        "review": "Even better than the first.",
+        "dateRead": "2024-05"
+      },
+      {
+        "title": "Oathbringer",
+        "seriesNumber": 3,
+        "format": "audiobook",
+        "narrators": [
+          "Michael Kramer",
+          "Kate Reading"
+        ],
+        "rating": 5,
+        "review": "",
+        "dateRead": "2024-07"
+      },
+      {
+        "title": "Rhythm Of War",
+        "seriesNumber": 4,
+        "format": "audiobook",
+        "narrators": [
+          "Michael Kramer",
+          "Kate Reading"
+        ],
+        "rating": 5,
+        "review": "",
+        "dateRead": "2025-08"
+      },
+      {
+        "title": "Wind and Truth",
+        "seriesNumber": 5,
+        "format": "audiobook",
+        "narrators": [
+          "Michael Kramer",
+          "Kate Reading"
+        ],
+        "rating": 5,
+        "review": "An epic end to the first era of SLA.",
+        "dateRead": "2026-01"
+      }
+    ],
+    "rating": 5,
+    "review": "One of the greatest epic fantasy series ever written. Sanderson's world-building is unmatched \u2014 Roshar is a fully realized world with its own ecology, magic systems, and history."
+  },
+  {
+    "id": "mistborn-era-1",
+    "type": "series",
+    "title": "Mistborn Era 1",
+    "author": "Brandon Sanderson",
+    "genre": [
+      "Epic Fantasy",
+      "Fantasy",
+      "Political Intrigue"
+    ],
+    "books": [
+      {
+        "title": "Mistborn: The Final Empire",
+        "seriesNumber": 1,
+        "format": [
+          "audiobook",
+          "physical"
+        ],
+        "narrators": [
+          "Michael Kramer",
+          "Kate Reading"
+        ],
+        "rating": 5,
+        "review": "An introduction to the world of Scadriel, following a pair of Allomancers who use metals to fuel their magics. This unique system of magic is core to the world and those that can control all of the metals are seen as demi-gods.",
+        "dateRead": "2026-01"
+      },
+      {
+        "title": "The Well of Ascension",
+        "seriesNumber": 2,
+        "format": [
+          "audiobook",
+          "physical"
+        ],
+        "narrators": [
+          "Michael Kramer",
+          "Kate Reading"
+        ],
+        "rating": 4,
+        "review": "After the events of 'The Final Empire' Vin and Elend must navigate a difficult political climate. A good follow-up to book 1, though what felt like an un-necessary love triangle forced in.",
+        "dateRead": "2026-01"
+      },
+      {
+        "title": "The Hero of Ages",
+        "seriesNumber": 3,
+        "format": [
+          "audiobook",
+          "physical"
+        ],
+        "narrators": [
+          "Michael Kramer",
+          "Kate Reading"
+        ],
+        "rating": 4,
+        "review": "Cataclysm faces Scadriel after the events of 'The Well of Ascension.' Vin, Elend, and Sazed must work to prevent this, while also discovering the secrets of a different metal art. Good ending to Era 1 with consequences to ther greater Cosmere.",
+        "dateRead": "2026-02"
+      }
+    ],
+    "rating": 5,
+    "review": "A gripping heist-fantasy with one of the most unique magic systems in the genre. Allomancy \u2014 powered by swallowing and burning metals \u2014 makes every fight and scene feel fresh. A must-read Sanderson entry point."
+  },
+  {
+    "id": "dungeon-crawler-carl",
+    "type": "series",
+    "title": "Dungeon Crawler Carl",
+    "author": "Matt Dinniman",
+    "genre": [
+      "LitRPG",
+      "Sci-Fi",
+      "Humor"
+    ],
+    "books": [
+      {
+        "title": "Dungeon Crawler Carl",
+        "seriesNumber": 1,
+        "format": "audiobook",
+        "narrators": [
+          "Jeff Hays"
+        ],
+        "rating": 5,
+        "review": "Hilarious, creative, and surprisingly emotional. Carl and Princess Donut are iconic.",
+        "dateRead": "2026-05"
+      },
+      {
+        "title": "Carl's Doomday Scenario",
+        "seriesNumber": 2,
+        "format": "kindle",
+        "narrators": [],
+        "rating": 5,
+        "review": " ",
+        "dateRead": "2026-05"
+      },
+      {
+        "title": "The Dungeon Anarchist's Cookbook",
+        "seriesNumber": 3,
+        "format": "kindle",
+        "narrators": [],
+        "rating": 5,
+        "review": " ",
+        "dateRead": "2026-06"
+      },
+      {
+        "title": "The Gate of the Feral Gods",
+        "seriesNumber": 4,
+        "format": "kindle",
+        "narrators": [],
+        "rating": 5,
+        "review": " ",
+        "dateRead": "2026-06"
+      },
+      {
+        "title": "The Butcher's Masquerade",
+        "seriesNumber": 5,
+        "format": "kindle",
+        "narrators": [],
+        "rating": 0,
+        "review": "currently reading",
+        "dateRead": "2026-07"
+      }
+    ],
+    "rating": 5,
+    "review": "Hilarious, creative, and surprisingly emotional. Carl and Princess Donut are one of the best duos in modern fiction. Gets better with every book \u2014 Jeff Hays' narration on the audiobooks is a masterclass."
+  },
+  {
+    "id": "secret-projects",
+    "type": "series",
+    "title": "Secret Projects",
+    "author": "Brandon Sanderson",
+    "genre": [
+      "Fantasy",
+      "Sci-Fi"
+    ],
+    "books": [
+      {
+        "title": "Yumi and the Nightmare Painter",
+        "seriesNumber": 3,
+        "format": "audiobook",
+        "rating": 3,
+        "review": "The third book in Sanderson's 'Secret Projects' kickstarter. I will admit I had difficulty getting into this one comapred to the earlier two. I will have to give it another listen/read in the future. The story was a bit predictable and I guessed the twist farily early through. I should be used to the back and forth narration style of Michael and Kate by now with WoT and SLA, but for some reason I couldn't quite jive with it this time.",
+        "dateRead": "2026-07"
+      },
+      {
+        "title": "The Sunlit Man",
+        "seriesNumber": 4,
+        "format": "audiobook",
+        "rating": 0,
+        "review": "Currently reading",
+        "dateRead": ""
+      }
+    ],
+    "rating": 3,
+    "review": "A collection of novels that Brandon Sanderson developed as part of a Kickstarter to explore the journies of Hoid and his experiences across the Cosmere. Mostly told with Hoid as a neutral third party."
+  },
+  {
+    "id": "project-hail-mary",
+    "type": "standalone",
+    "title": "Project Hail Mary",
+    "author": "Andy Weir",
+    "genre": [
+      "Sci-Fi"
+    ],
+    "books": [
+      {
+        "title": "Project Hail Mary",
+        "seriesNumber": null,
+        "format": "kindle",
+        "narrators": [],
+        "rating": 0,
+        "review": "On my TBR list",
+        "dateRead": ""
+      }
+    ]
+  }
+]

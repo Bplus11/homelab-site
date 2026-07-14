@@ -1,0 +1,90 @@
+---
+import Base from '../../layouts/Base.astro';
+import projects from '../../data/projects.json';
+
+const statusColor = (s) => {
+  if (s === 'Active') return 'border-color:#3a4a3a;color:#9adf9a;';
+  if (s === 'In Progress') return 'border-color:#3a3a20;color:#dfcf7a;';
+  if (s === 'Planned') return 'border-color:#2a2e38;color:#9aa0ad;';
+  return '';
+};
+
+// Group projects
+const labProjects = projects.filter(p => ['proxmox-homelab','active-directory-lab','security-lab'].includes(p.slug));
+const ctf = projects.find(p => p.slug === 'ctf-writeups');
+const other = projects.filter(p => !['proxmox-homelab','active-directory-lab','security-lab','ctf-writeups'].includes(p.slug));
+---
+<Base title="Projects">
+  <h1>Projects</h1>
+  <p>Homelab builds, security lab write-ups, CTF challenges, and other technical projects.</p>
+
+  <h2>Homelab</h2>
+  <div class="grid">
+    {labProjects.map((p) => (
+      <div class="card" style="cursor:pointer;" onclick={`window.location='/projects/${p.slug}'`}>
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:0.5rem;">
+          <h3 style="margin:0 0 0.5rem;"><a href={`/projects/${p.slug}`}>{p.title}</a></h3>
+          <span class="tag" style={statusColor(p.status)}>{p.status}</span>
+        </div>
+        <p style="color:var(--text-dim);font-size:0.9rem;">{p.summary}</p>
+        <div style="margin-top:0.75rem;">
+          {p.tags.map((t) => <span class="tag">{t}</span>)}
+        </div>
+        {p.inventoryLink && (
+          <p style="margin-top:0.75rem;font-size:0.85rem;">
+            <a href={p.inventoryLink} onclick="event.stopPropagation()">View Lab Inventory →</a>
+          </p>
+        )}
+      </div>
+    ))}
+  </div>
+
+  {ctf && (
+    <>
+      <h2 style="margin-top:2rem;">CTF Write-ups</h2>
+      <div class="card">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:0.5rem;flex-wrap:wrap;">
+          <div>
+            <h3 style="margin:0 0 0.4rem;"><a href={`/projects/${ctf.slug}`}>{ctf.title}</a></h3>
+            <p style="color:var(--text-dim);font-size:0.9rem;margin:0 0 0.75rem;">{ctf.summary}</p>
+            <div>{ctf.tags.map((t) => <span class="tag">{t}</span>)}</div>
+          </div>
+          <span class="tag" style={statusColor(ctf.status)}>{ctf.status}</span>
+        </div>
+        {ctf.writeups && ctf.writeups.length > 0 && (
+          <div style="margin-top:1rem;border-top:1px solid var(--border);padding-top:1rem;">
+            <p style="color:var(--text-dim);font-size:0.85rem;margin:0 0 0.75rem;">{ctf.writeups.length} write-up{ctf.writeups.length !== 1 ? 's' : ''} published</p>
+            <div style="display:flex;flex-wrap:wrap;gap:0.5rem;">
+              {ctf.writeups.map((w) => (
+                <a href={`/projects/${ctf.slug}#${w.title.toLowerCase().replace(/\s+/g,'-')}`} style="text-decoration:none;">
+                  <span class="tag" style="cursor:pointer;">{w.platform} — {w.title} ({w.difficulty})</span>
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
+        <p style="margin-top:1rem;font-size:0.85rem;"><a href={`/projects/${ctf.slug}`}>View all write-ups →</a></p>
+      </div>
+    </>
+  )}
+
+  {other.length > 0 && (
+    <>
+      <h2 style="margin-top:2rem;">Other</h2>
+      <div class="grid">
+        {other.map((p) => (
+          <div class="card">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:0.5rem;">
+              <h3 style="margin:0 0 0.5rem;"><a href={`/projects/${p.slug}`}>{p.title}</a></h3>
+              <span class="tag" style={statusColor(p.status)}>{p.status}</span>
+            </div>
+            <p style="color:var(--text-dim);font-size:0.9rem;">{p.summary}</p>
+            <div style="margin-top:0.75rem;">
+              {p.tags.map((t) => <span class="tag">{t}</span>)}
+            </div>
+          </div>
+        ))}
+      </div>
+    </>
+  )}
+</Base>
