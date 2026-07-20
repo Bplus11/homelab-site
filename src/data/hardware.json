@@ -28,26 +28,28 @@
   },
   {
     "id": "switch-01",
-    "name": "Core Switch",
+    "name": "Office Switch",
     "type": "Network",
     "role": "Managed Switch",
-    "make": "Your Make",
-    "model": "Your Model",
-    "ports": 24,
-    "location": "Rack U3",
+    "make": "Firewalla",
+    "model": "Switch SE",
+    "ports": 8,
+    "location": "Office",
     "status": "Active"
   },
   {
-    "id": "nas-01",
-    "name": "NAS",
-    "type": "Storage",
-    "role": "Network Attached Storage",
-    "make": "Your Make",
-    "model": "Your Model",
+    "id": "node-02",
+    "name": "Proxmox Node 02",
+    "type": "Mini-PC",
+    "role": "Hypervisor",
+    "make": "Firebat",
+    "model": "A6",
+    "cpu": "R7 7735HS",
+    "ram_gb": "16",
     "storage": [
-      { "type": "HDD", "size_gb": 8000, "use": "Media / Backups" }
+      { "type": "HDD", "size_gb": 512, "use": "VM Storage" }
     ],
-    "location": "Rack U4",
-    "status": "Active"
+    "location": "Office",
+    "status": "In Process/Offline"
   }
 ]

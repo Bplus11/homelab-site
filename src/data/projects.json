@@ -26,7 +26,7 @@
     "summary": "Windows Server 2022 AD environment with domain controllers, GPOs, OUs, and scripted user provisioning.",
     "tags": ["Windows Server", "Active Directory", "DNS", "PowerShell", "Proxmox"],
     "github": "Bplus11/active-directory-lab",
-    "status": "Active",
+    "status": "In Progress",
     "inventoryLink": "",
     "sections": [
       {

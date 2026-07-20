@@ -65,7 +65,8 @@
       "Terminaled",
       "Session Held",
       "Metasploitable",
-      "Blue"
+      "Blue",
+      "Sword Apprentice"
     ],
     "paths": [
       {
@@ -81,7 +82,8 @@
     ],
     "highlightRooms": [
       { "name": "Linux Fundamentals Part 1", "url": "https://tryhackme.com/room/linuxfundamentalspart1", "status": "Complete" },
-      { "name": "Nmap", "url": "https://tryhackme.com/room/furthernmap", "status": "Complete" }
+      { "name": "Nmap", "url": "https://tryhackme.com/room/furthernmap", "status": "Complete" },
+      { "name": "Blue", "url": "https://tryhackme.com/room/blue", "status":"Complete"}
     ]
   },
   "hackthebox": {
