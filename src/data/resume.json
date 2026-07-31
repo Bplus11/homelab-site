@@ -17,8 +17,8 @@
       "label": "Information Technology",
       "icon": "💻",
       "title": "Field Engineer / Aspiring Security Analyst",
-      "summary": "IT-specific summary for technical hiring managers — homelab, infrastructure, tooling, etc.",
-      "skills": ["Windows OS", "Active Directory", "Linux", "Hardware Support", "Networking", "Proxmox", "Risk Assessment", "Business Impact Analysis"],
+      "summary": "IT Professional with experience in enterprise hardware maintenance. Actively developing knowledge and skills in Active Directory, Network Design and Security, Threat Hunting, and coding/development through a robust home-lab environment as well as pursuit of certifications to prove understanding of those concepts.",
+      "skills": ["Windows OS (XP-Win 11)", "Active Directory", "Linux", "Hardware Support", "Networking", "Proxmox", "Risk Assessment", "Business Impact Analysis", "Dell Enterprise Server Hardware", "ServiceNow", "Salesforce", "Mentoring", "LAN/WAN"],
       "experience": [
         {
           "company": "Tek Systems | Contractor at AMD",
@@ -42,6 +42,29 @@
             "Provided customer training on hardware/software best practices and preventative maintenance, cultivating strong customer relationships and managing expectations throughout the service lifecycle.",
             "Became a mentor to a new engineer within 3 months of employment."
           ]
+        },
+        {
+          "company": "Dell Technologies",
+          "role": "Tech Support Engineer",
+          "start": "May-2024",
+          "end": "Nov-2024",
+          "bullets": [
+            "Six month cross training pilot program",
+            "Remote support for Isilon/PowerScale systems via log analysis and automated dial-home alerts",
+            "Generated action plans for field engineers; escalated per Dell KPI benchmarks",
+            "Helped reduce average open support case time by 2 days"
+          ]
+        },
+        {
+          "company": "Kap Technologies/Kaplan University",
+          "role": "IT Internship, Networking Lead",
+          "start": "Mar-2017",
+          "end": "May-2017",
+          "bullets":[
+            "Led intern team on network security projects as networking department lead",
+            "Developed departmental SOPs and conducted weekly training sessions",
+            "Authored proposal to establish a National Cyber League competition team"
+          ]
         }
       ]
     },
@@ -50,7 +73,7 @@
       "label": "Pharmacy",
       "icon": "⚕️",
       "title": "Pharmacy Technician",
-      "summary": "Pharmacy-specific summary for healthcare hiring managers — clinical experience, settings, specialties.",
+      "summary": "Veteran Pharmacy Technician with 20 years of combined experience in a large variety of roles within Pharmacy. Ranging from Outpatient/Retail, Military, Inventory Management/Procurement, Automation, and Sterile Preparation. Worked with leadership to develop SOPs and mentor/train new technicians.",
       "skills": ["Clinical Review", "Sterile Compounding", "Automation", "Pharmacy Inventory Management", "Pharmacy Budget"],
       "experience": [
         {
@@ -59,8 +82,12 @@
           "start": "2017",
           "end": "2022",
           "bullets": [
-            "",
-            ""
+            "Managed multi-million dollar pharmaceutical inventory optimizing procurement for uninterrupted patient care",
+            "Negotiated vendor pricing securing cost-effective contracts under 340B and DEA compliance",
+            "Increased annual pharmacy inventory turns from 1.8 to 13",
+            "Closed budget gaps from 3+ years prior and maintained 99% audit rate",
+            "Assisted with implementation of McKesson-based inventory system"
+  
           ]
         },
         {
@@ -69,7 +96,33 @@
           "start": "2009",
           "end": "2017",
           "bullets": [
-
+            "Customer support to medical staff and patients per established SOPs",
+            "Mentored and trained new staff on procedures, Parata PASSmed, and compliance",
+            "Developed training guides and SOPs for multiple department areas",
+            "Monitored and supported Parata PASSmed automated repackaging/dispensing systems"
+          ]
+        },
+        {
+          "company": "Mercy Medical Center",
+          "role":"Pharmacy Tehnician",
+          "start": "2004",
+          "end": "2009",
+          "bullets":[
+            "Compounded IV medications including chemotherapy and TPN admixtures under aseptic technique",
+            "Operated and maintained Pyxis automated dispensing cabinets",
+            "Monitored and performed basic maintenance on dispensing robotics"
+          ]
+        },
+        {
+          "company": "United States Army Reserve",
+          "role": "Pharmacy Specialist (68-Q)",
+          "start": "2000",
+          "end": "2008",
+          "bullets":[
+            "Active Duty Deployment from 2006-2007 to Ft. Jackson, SC",
+            "Maintained medication inventory and filled/dispensed prescriptions for Army hospital",
+            "Managed immunization inventories for incoming Basic Training soldiers",
+            "Monitored automated dispensing cabinet in Urgent Care Clinic"
           ]
         }
       ]
