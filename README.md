@@ -33,21 +33,7 @@ Everything is plain JSON — no admin panel needed, just edit and save:
 
 After editing, just save the file — the dev server hot-reloads.
 
-## 3. Importing your MTG collection from Archidekt
-
-Archidekt doesn't have a public, browser-fetchable API for personal collections, so the
-reliable way to sync is:
-
-1. Go to your collection on [archidekt.com](https://archidekt.com/collections)
-2. Use **Export → CSV**
-3. Run:
-   ```bash
-   node scripts/import-archidekt-csv.mjs ~/Downloads/your-export.csv
-   ```
-4. This rewrites `src/data/mtg-collection.json`. Re-run it any time your collection changes
-   and re-export.
-
-## 4. Building for production
+## 3. Building for production
 
 ```bash
 npm run build
@@ -55,7 +41,7 @@ npm run build
 
 Output goes to `dist/` — this is the folder you deploy.
 
-## 5. Deploying (free static hosting)
+## 4. Deploying (free static hosting)
 
 **Recommended: Netlify or Vercel**, both have free tiers and connect directly to a GitHub repo:
 
@@ -68,7 +54,7 @@ Output goes to `dist/` — this is the folder you deploy.
 routing since this site uses dynamic `[slug]` pages; Netlify/Vercel handle that automatically
 with zero config, which is why they're recommended here.
 
-## 6. Pointing your existing domain at it
+## 5. Pointing your existing domain at it
 
 Your domain registration (currently sitting at Squarespace) and your site hosting are two
 separate things — you can keep the domain registered there and still point it at Netlify/Vercel:
