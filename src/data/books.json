@@ -134,6 +134,28 @@
     "review": "A gripping heist-fantasy with one of the most unique magic systems in the genre. Allomancy \u2014 powered by swallowing and burning metals \u2014 makes every fight and scene feel fresh. A must-read Sanderson entry point."
   },
   {
+    "id": "mistborn-era-2",
+    "type": "series",
+    "title": "Mistborn Era 2",
+    "author": "Brandon Sanderson",
+    "genre": [
+      "Epic Fantasy",
+      "Western",
+      "Political Intrigue"
+    ],
+    "books": [
+      {
+        "title": "The Alloy of Law",
+        "seriesNumber": 1,
+        "format": "audiobook",
+        "narrator": "Michael Kramer",
+        "rating": 4,
+        "review": "The start of the 'Wax & Wayne' cycle. We are introduced to a pair of unlikely heroes, a former nobleman who escaped to the roughs to become a famous lawman, and hiw partner, a roughs dweller.",
+        "dateRead": "2026-04"
+      }
+    ]
+  },
+  {
     "id": "secret-projects",
     "type": "series",
     "title": "Secret Projects",
@@ -143,10 +165,22 @@
       "Sci-Fi"
     ],
     "books": [
+      {"title": "Tress of the Emerald Sea",
+        "seriesNumber": 1,
+        "format": "audiobook",
+          "narrator": "Michael Kramer",
+          "rating": 3,
+        "review": "The first book in Sanderson's 'Secret Projects' kickstarter. Can a stow-away on an ocean of spores that become dangers when wet navigate her first time off her island, becoming a pirate, and find the sorceress and her friend who has gone missing? A great listen, still unsure how it will fit into the greater cosmere though.",
+        "dateRead": "2026-07"
+      },
       {
         "title": "Yumi and the Nightmare Painter",
         "seriesNumber": 3,
         "format": "audiobook",
+          "narrators": [
+          "Michael Kramer",
+          "Kate Reading"
+        ],
         "rating": 3,
         "review": "The third book in Sanderson's 'Secret Projects' kickstarter. I will admit I had difficulty getting into this one comapred to the earlier two. I will have to give it another listen/read in the future. The story was a bit predictable and I guessed the twist farily early through. I should be used to the back and forth narration style of Michael and Kate by now with WoT and SLA, but for some reason I couldn't quite jive with it this time.",
         "dateRead": "2026-07"
@@ -155,9 +189,10 @@
         "title": "The Sunlit Man",
         "seriesNumber": 4,
         "format": "audiobook",
-        "rating": 0,
-        "review": "Currently reading",
-        "dateRead": ""
+        "narrators": "William DeMeritt",
+        "rating": 4,
+        "review": "A look into a Rosharan worldhopper who has had some off-screen adventures since we last saw him and he's faced with the decision to escape the hellscape he got dumped on, or save the lives of the inhabitants who took him in and adopted him as one of their own. My only issue with this book is the narration. Having heard Michael's take on a character for 5 books then have a wildly different narration style and voice threw me.",
+        "dateRead": "2026-08"
       }
     ],
     "rating": 3,
@@ -182,7 +217,7 @@
           "Jeff Hays"
         ],
         "rating": 5,
-        "review": "Hilarious, creative, and surprisingly emotional. Carl and Princess Donut are iconic.",
+        "review": " ",
         "dateRead": "2026-05"
       },
       {
@@ -217,9 +252,21 @@
         "seriesNumber": 5,
         "format": "kindle",
         "narrators": [],
+        "rating": 5,
+        "review": "Picks up where Gate left off. Carl and Donut have to navigate the wilds of the 6th floor, the 'Hunting grounds.' On this floor, inhabitants of the universe can buy into slots to hunt the crawlers and take bounties and gear to profit or to give to their allies on the 9th floor for the faction war. A lot of side quests from their past come back to haunt Carl and Donut, which culminates in a fatal four way during the grand banquet and a 10 minute stop on the 7th floor.",
+        "dateRead": "2026-08"
+      },
+      {
+        "title": "The Eye of the Bedlam Bride",
+        "seriesNumber": 6,
+        "format": [
+          "kindle",
+          "audiobook"
+        ],
+        "narrators": "Jeff Hayes",
         "rating": 0,
         "review": "currently reading",
-        "dateRead": "2026-07"
+        "dateRead": " "
       }
     ],
     "rating": 5,

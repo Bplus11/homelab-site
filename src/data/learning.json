@@ -66,7 +66,9 @@
       "Session Held",
       "Metasploitable",
       "Blue",
-      "Sword Apprentice"
+      "Sword Apprentice",
+      "Network Hog",
+      "Shield Apprentice"
     ],
     "paths": [
       {
@@ -81,7 +83,7 @@
       }
     ],
     "highlightRooms": [
-      { "name": "Linux Fundamentals Part 1", "url": "https://tryhackme.com/room/linuxfundamentalspart1", "status": "Complete" },
+      { "name": "Snort", "url": "https://tryhackme.com/room/snort", "status": "Complete" },
       { "name": "Nmap", "url": "https://tryhackme.com/room/furthernmap", "status": "Complete" },
       { "name": "Blue", "url": "https://tryhackme.com/room/blue", "status":"Complete"}
     ]
