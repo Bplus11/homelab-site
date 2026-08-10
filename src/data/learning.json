@@ -41,6 +41,16 @@
       "badge": ""
     },
     {
+      "name": "CompTIA Security+",
+      "issuer": "CompTIA",
+      "status": "Planned",
+      "date": "",
+      "expires": "",
+      "credentialId": "",
+      "verifyUrl": "",
+      "badge": ""
+    },
+    {
       "name": "ISO/IEC 27001 Lead Auditor",
       "issuer": "GRC Mastery",
       "status": "Planned",
@@ -68,7 +78,9 @@
       "Blue",
       "Sword Apprentice",
       "Network Hog",
-      "Shield Apprentice"
+      "Shield Apprentice",
+      "Cyber Ready",
+      "OWASP Top 10"
     ],
     "paths": [
       {
@@ -78,6 +90,11 @@
       },
       {
         "name": "Introduction to Cybersecurity",
+        "status": "Complete",
+        "completedDate": "2026-08"
+      },
+      {
+        "name": "SOC Level 1",
         "status": "In Progress",
         "completedDate": ""
       }
