@@ -1,55 +1,53 @@
 [
   {
-    "id": "node-01",
-    "name": "Proxmox Node 01",
-    "type": "Desktop",
-    "role": "Hypervisor",
-    "make": "AS Rock",
-    "model": "",
-    "cpu": "",
-    "ram_gb": 32,
-    "storage": [
-      { "type": "SSD", "size_gb": 480, "use": "OS" },
-      { "type": "HDD", "size_gb": 4000, "use": "VM Storage" }
-    ],
-    "nics": 2,
-    "location": "Office",
-    "status": "Active"
-  },
-  {
-    "id": "router-01",
-    "name": "Primary Router",
+    "id": "firewalla-gold",
+    "name": "Firewalla Gold",
     "type": "Network",
-    "role": "Router / Firewall",
+    "role": "Router / Firewall / DHCP / DNS / VLAN Gateway",
     "make": "Firewalla",
-    "model": "Gold Plus",
-    "location": "Office",
+    "model": "Gold",
+    "location": "Network Cabinet",
     "status": "Active"
   },
   {
-    "id": "switch-01",
-    "name": "Office Switch",
+    "id": "switch-se",
+    "name": "Firewalla Switch SE",
     "type": "Network",
-    "role": "Managed Switch",
+    "role": "Managed Switch / VLAN Trunking",
     "make": "Firewalla",
     "model": "Switch SE",
     "ports": 8,
-    "location": "Office",
+    "location": "Network Cabinet",
     "status": "Active"
   },
   {
-    "id": "node-02",
-    "name": "Proxmox Node 02",
-    "type": "Mini-PC",
-    "role": "Hypervisor",
-    "make": "Firebat",
-    "model": "A6",
-    "cpu": "R7 7735HS",
-    "ram_gb": "16",
-    "storage": [
-      { "type": "HDD", "size_gb": 512, "use": "VM Storage" }
-    ],
-    "location": "Office",
-    "status": "In Process/Offline"
+    "id": "ap7",
+    "name": "Firewalla AP7",
+    "type": "Network",
+    "role": "Wireless AP / Multi-SSID / WPA3-Enterprise",
+    "make": "Firewalla",
+    "model": "AP7",
+    "location": "Network Cabinet",
+    "status": "Active"
+  },
+  {
+    "id": "pve1",
+    "name": "pve1",
+    "type": "Server",
+    "role": "Proxmox Node 1 / Security Onion Inline Tap",
+    "make": "Desktop",
+    "model": "2-NIC Desktop",
+    "location": "Lab",
+    "status": "Active"
+  },
+  {
+    "id": "pve2",
+    "name": "pve2",
+    "type": "Server",
+    "role": "Proxmox Node 2 / AD Lab VMs",
+    "make": "Desktop",
+    "model": "Desktop",
+    "location": "Lab",
+    "status": "Active"
   }
 ]

@@ -1,28 +1,32 @@
 {
+  "isps": [
+    {
+      "name": "Mediacom",
+      "speed": "1Gbps",
+      "gateway": "primary",
+      "type": "Primary"
+    },
+    {
+      "name": "CenturyLink",
+      "speed": "100Mbps",
+      "gateway": "failover",
+      "type": "Failover"
+    }
+  ],
   "vlans": [
-    { "id": 10, "name": "Management",   "subnet": "192.168.10.0/24", "description": "Homelab management and infrastructure" },
-    { "id": 20, "name": "Servers",      "subnet": "192.168.20.0/24", "description": "Production VMs and services" },
-    { "id": 33, "name": "Security Lab", "subnet": "192.168.30.0/24", "description": "Isolated security lab — AD, Security Onion, attack VMs" },
-    { "id": 40, "name": "IoT",          "subnet": "192.168.40.0/24", "description": "Smart home and IoT devices, isolated from main network" },
-    { "id": 99, "name": "Guest",        "subnet": "192.168.99.0/24", "description": "Guest WiFi, no LAN access" }
+    { "id": 10, "name": "Home",       "subnet": "192.168.10.0/24", "description": "Trusted personal devices — phones, PCs, laptops, tablets" },
+    { "id": 20, "name": "Devices",    "subnet": "192.168.20.0/24", "description": "Less trusted / WPA2-only — game consoles, smart TVs" },
+    { "id": 30, "name": "Lab",        "subnet": "192.168.30.0/24", "description": "Homelab VMs, Proxmox management, Active Directory lab" },
+    { "id": 33, "name": "SecOnion",   "subnet": "192.168.33.0/24", "description": "Security Onion management — do not modify" },
+    { "id": 40, "name": "Work",       "subnet": "192.168.40.0/24", "description": "Work devices, fully isolated, CenturyLink primary WAN" },
+    { "id": 50, "name": "IoT",        "subnet": "192.168.50.0/24", "description": "IoT devices — smart home, sensors, cameras" },
+    { "id": 60, "name": "Threat Lab", "subnet": "10.66.0.0/16",    "description": "Threat hunting lab — future, not yet configured" },
+    { "id": 90, "name": "Guest",      "subnet": "192.168.90.0/24", "description": "Guest access, internet-only, client isolation enabled" }
   ],
   "dns": {
-    "primary": "192.168.10.10",
+    "primary": "192.168.10.1",
     "secondary": "1.1.1.1",
-    "domain": "lab.local"
+    "domain": "bplus11.lan"
   },
-  "isps": [
-  {
-    "name": "Mediacom",
-    "speed": "1Gbps",
-    "gateway": "192.168.10.1",
-    "type": "Primary"
-  },
-  {
-    "name": "CenturyLink",
-    "speed": "100Mbps",
-    "gateway": "192.168.10.2",
-    "type": "Failover"
-  }
-]
+  "gateway": "192.168.10.1"
 }
