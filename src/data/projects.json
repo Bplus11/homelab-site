@@ -3,19 +3,31 @@
     "slug": "proxmox-homelab",
     "title": "Proxmox Homelab Cluster",
     "summary": "The core of the homelab — a Proxmox-based hypervisor running all lab VMs, with VLAN-segmented networking and a structured VM inventory.",
-    "tags": ["Proxmox", "Virtualization", "Networking", "VLANs"],
+    "tags": ["Proxmox", "Firewalla", "VLANs", "Security Onion", "Dual-ISP", "Networking"],
     "github": "",
     "status": "Active",
     "inventoryLink": "/inventory",
     "sections": [
       {
-        "heading": "Overview",
-        "content": "The homelab runs on a Proxmox hypervisor hosting all lab VMs across segmented VLANs. Built to mirror enterprise infrastructure for hands-on learning and experimentation."
-      },
-      {
-        "heading": "Goals",
-        "content": "Provide an isolated, production-like environment for running security tools, Active Directory, and various self-hosted services without impacting the main home network."
-      }
+    "heading": "Overview",
+    "content": "Dual-ISP home network managed by a Firewalla Gold router with two Proxmox nodes (pve1 and pve2). Seven VLANs segment traffic by trust level, with an inline Security Onion tap on pve1 monitoring all traffic between the router and switch."
+       },
+       {
+    "heading": "Hardware",
+    "content": "Firewalla Gold handles routing, firewall, DHCP, DNS, and VLAN gateways. The Firewalla Switch SE manages VLAN trunking across ports. The Firewalla AP7 provides multi-SSID wireless with WPA3-Enterprise on the primary home SSID. pve1 is a dual-NIC desktop running Proxmox and hosting the Security Onion inline tap. pve2 is a second Proxmox node hosting the AD lab VMs."
+       },
+       {
+    "heading": "VLAN Design",
+    "content": "Eight VLANs segment traffic by trust level and function. Firewalla uses a block-all-then-allow-exceptions policy per VLAN. VLAN 10 (Home) can reach Lab and SecOnion for management. VLAN 30 (Lab) and VLAN 33 (SecOnion) are bidirectionally open to each other. VLAN 40 (Work) is fully isolated on CenturyLink as its primary WAN. VLAN 60 (Threat Lab) is reserved for future threat hunting — uses 10.66.0.0/16 intentionally to make its traffic instantly identifiable in logs."
+       },
+       {
+    "heading": "WAN Routing",
+    "content": "Mediacom (1Gbps) is primary for all VLANs except Work. CenturyLink (100Mbps) is primary for VLAN 40 (Work) and failover for everything else. VLAN 60 (Threat Lab) has no internet access by default — narrow temporary allow rules are created per test and deleted after."
+       },
+       {
+    "heading": "Proxmox Bridges",
+    "content": "vmbr0 is the default bridge on native VLAN for Security Onion monitoring traffic. vmbr1 carries VLAN 30 for lab VMs including the AD domain controller at 192.168.30.10. vmbr2 is reserved for VLAN 60 threat lab VMs. Both nodes share /etc/pve/ config via the cluster filesystem."
+       }
     ],
     "codeSnippets": [],
     "images": []
@@ -60,18 +72,22 @@
     "status": "In Progress",
     "inventoryLink": "",
     "sections": [
-      {
-        "heading": "Overview",
-        "content": "A dedicated security lab running Security Onion for network security monitoring, IDS/IPS, and SIEM capabilities. Used to practice threat hunting against simulated attack scenarios in an isolated VLAN."
-      },
-      {
-        "heading": "Lab Setup",
-        "content": "Security Onion deployed on Proxmox, configured to monitor traffic across the security lab VLAN. Attacker and victim VMs are isolated from the rest of the homelab network."
-      },
-      {
-        "heading": "Planned Scenarios",
-        "content": "Mock threat hunting exercises including lateral movement detection, C2 traffic identification, credential dumping alerts, and log analysis workflows."
-      }
+       {
+    "heading": "Overview",
+    "content": "Security Onion deployed on pve1 as an inline tap between the Firewalla Gold router and the Switch SE. The monitoring interface sits physically between router and switch seeing all traffic untagged. The Security Onion management interface lives on VLAN 33 (192.168.33.0/24), isolated from all other VLANs except Lab (VLAN 30) and Home (VLAN 10) for management access."
+       },
+       {
+    "heading": "Inline Tap Architecture",
+    "content": "pve1 has two NICs — one connected to the router, one to the switch. Security Onion's monitoring interface is untagged on the native VLAN and sees all traffic. Only the management interface is tagged on VLAN 33. This setup ensures the tap is transparent to the network and cannot be directly reached from threat lab VMs."
+       },
+        {
+    "heading": "VLAN 60 — Threat Lab (Planned)",
+    "content": "A dedicated threat hunting VLAN using 10.66.0.0/16 — deliberately different from the 192.168.x.0/24 pattern to make threat lab traffic instantly identifiable in Security Onion logs and packet captures. No internet by default. Management access comes inbound from VLAN 30 only. When VLAN 60 is stood up, tagged ports will be added to Switch SE ports 1 and 3 — not port 2, keeping threat lab VMs off wireless."
+       },
+       {
+    "heading": "Planned Scenarios",
+    "content": "Mock threat hunting exercises including lateral movement detection, C2 traffic identification, credential dumping alerts, and log analysis workflows using Security Onion's built-in detection rules and custom Sigma rules."
+       }
     ],
     "codeSnippets": [],
     "images": []
