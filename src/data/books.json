@@ -148,7 +148,7 @@
         "title": "The Alloy of Law",
         "seriesNumber": 1,
         "format": "audiobook",
-        "narrators": "Michael Kramer",
+        "narrators": ["Michael Kramer"],
         "rating": 4,
         "review": "The start of the 'Wax & Wayne' cycle. We are introduced to a pair of unlikely heroes, a former nobleman who escaped to the roughs to become a famous lawman, and hiw partner, a roughs dweller.",
         "dateRead": "2026-04"
@@ -168,7 +168,7 @@
       {"title": "Tress of the Emerald Sea",
         "seriesNumber": 1,
         "format": "audiobook",
-          "narrators": "Michael Kramer",
+          "narrators": ["Michael Kramer"],
           "rating": 3,
         "review": "The first book in Sanderson's 'Secret Projects' kickstarter. Can a stow-away on an ocean of spores that become dangers when wet navigate her first time off her island, becoming a pirate, and find the sorceress and her friend who has gone missing? A great listen, still unsure how it will fit into the greater cosmere though.",
         "dateRead": "2026-07"
@@ -189,7 +189,7 @@
         "title": "The Sunlit Man",
         "seriesNumber": 4,
         "format": "audiobook",
-        "narrators": "William DeMeritt",
+        "narrators": ["William DeMeritt"],
         "rating": 4,
         "review": "A look into a Rosharan worldhopper who has had some off-screen adventures since we last saw him and he's faced with the decision to escape the hellscape he got dumped on, or save the lives of the inhabitants who took him in and adopted him as one of their own. My only issue with this book is the narration. Having heard Michael's take on a character for 5 books then have a wildly different narration style and voice threw me.",
         "dateRead": "2026-08"
@@ -216,9 +216,7 @@
           "kindle",
           "audiobook"
         ],
-        "narrators": [
-          "Jeff Hays"
-        ],
+        "narrators": ["Jeff Hays"],
         "rating": 5,
         "review": " ",
         "dateRead": "2026-05"
@@ -266,7 +264,7 @@
           "kindle",
           "audiobook"
         ],
-        "narrators": "Jeff Hayes",
+        "narrators": ["Jeff Hayes"],
         "rating": 0,
         "review": "currently reading",
         "dateRead": " "
