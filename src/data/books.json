@@ -148,7 +148,7 @@
         "title": "The Alloy of Law",
         "seriesNumber": 1,
         "format": "audiobook",
-        "narrator": "Michael Kramer",
+        "narrators": "Michael Kramer",
         "rating": 4,
         "review": "The start of the 'Wax & Wayne' cycle. We are introduced to a pair of unlikely heroes, a former nobleman who escaped to the roughs to become a famous lawman, and hiw partner, a roughs dweller.",
         "dateRead": "2026-04"
@@ -168,7 +168,7 @@
       {"title": "Tress of the Emerald Sea",
         "seriesNumber": 1,
         "format": "audiobook",
-          "narrator": "Michael Kramer",
+          "narrators": "Michael Kramer",
           "rating": 3,
         "review": "The first book in Sanderson's 'Secret Projects' kickstarter. Can a stow-away on an ocean of spores that become dangers when wet navigate her first time off her island, becoming a pirate, and find the sorceress and her friend who has gone missing? A great listen, still unsure how it will fit into the greater cosmere though.",
         "dateRead": "2026-07"
@@ -212,7 +212,10 @@
       {
         "title": "Dungeon Crawler Carl",
         "seriesNumber": 1,
-        "format": "audiobook",
+        "format": [
+          "kindle",
+          "audiobook"
+        ],
         "narrators": [
           "Jeff Hays"
         ],
